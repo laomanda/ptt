@@ -1,8 +1,10 @@
 {
   "meta": {
     "institution": "Pesantren Kader Nazhir Putri Jalaluddin",
-    "version": "2.0.0",
-    "description": "Data demo konten publik, Mini LMS, Quiz Builder, dan penilaian (disiapkan untuk migrasi Laravel)"
+    "version": "2.1.0",
+    "schemaVersion": "2.1.0",
+    "v21Migrated": true,
+    "description": "Data demo konten publik, Mini LMS, Quiz Builder Pilihan Ganda, dan penilaian otomatis (disiapkan untuk migrasi Laravel)"
   },
   "documents": [
     {
@@ -166,7 +168,7 @@
       "chapterId": "chap-001",
       "type": "post_test",
       "title": "Post-Test Bab 1: Hakikat Wakaf & Amanah Nazhir",
-      "description": "Evaluasi akhir Bab 1 terdiri atas soal Pilihan Ganda, Benar/Salah, dan Essay uraian.",
+      "description": "Evaluasi akhir Bab 1 menggunakan soal Pilihan Ganda dengan penilaian otomatis.",
       "passingScore": 75,
       "demo": true,
       "status": "published",
@@ -237,22 +239,33 @@
     {
       "id": "q-002",
       "testId": "test-001",
-      "type": "true_false",
-      "question": "Wakaf hanya dapat dilakukan dalam bentuk tanah dan bangunan, tidak dapat berbentuk uang atau aset bergerak lainnya. (Soal Contoh)",
-      "correctAnswer": false,
-      "points": 5,
-      "explanation": "Pernyataan tersebut salah. Selain tanah dan bangunan, fikih dan regulasi wakaf modern juga mengenal wakaf uang dan aset bergerak produktif.",
+      "type": "multiple_choice",
+      "question": "Selain tanah dan bangunan, bentuk aset apakah yang juga dikenal dalam fikih dan regulasi wakaf modern? (Soal Contoh)",
+      "options": [
+        "Wakaf uang dan aset bergerak produktif",
+        "Barang sekali pakai yang langsung habis",
+        "Harta hasil pinjaman berbunga tinggi",
+        "Hak milik sementara selama satu hari"
+      ],
+      "correctAnswer": 0,
+      "points": 10,
+      "explanation": "Selain tanah dan bangunan, fikih dan regulasi wakaf modern juga mengenal wakaf uang dan aset bergerak produktif.",
       "order": 2
     },
     {
       "id": "q-003",
       "testId": "test-001",
-      "type": "essay",
-      "question": "Jelaskan secara singkat apa peran penting seorang nazhir dalam menjaga amanah wakaf! (Soal Contoh)",
-      "modelAnswer": "Nazhir berperan menjaga keutuhan pokok aset wakaf, mengelola secara produktif sesuai syariah dan ikrar wakaf, serta menyalurkan hasil manfaat secara transparan kepada penerima manfaat (mauquf alaih).",
-      "rubric": "Menyebutkan minimal 2 peran: menjaga pokok aset (10 poin) dan mengelola/menyalurkan manfaat secara amanah (10 poin).",
-      "instructions": "Tuliskan jawaban dengan bahasa yang ringkas dan jelas (maksimal 5.000 karakter).",
-      "points": 20,
+      "type": "multiple_choice",
+      "question": "Apakah peran utama seorang nazhir dalam menjaga amanah wakaf? (Soal Contoh)",
+      "options": [
+        "Menjaga pokok aset, mengelola secara produktif sesuai syariah, dan menyalurkan manfaatnya",
+        "Menjual seluruh aset wakaf ketika harga pasar sedang turun",
+        "Menggunakan seluruh hasil wakaf untuk keperluan pribadi tanpa pencatatan",
+        "Mengubah peruntukan wakaf sesuka hati tanpa dasar ikrar wakaf"
+      ],
+      "correctAnswer": 0,
+      "points": 10,
+      "explanation": "Nazhir berperan menjaga keutuhan pokok aset wakaf, mengelolanya secara produktif sesuai syariah dan ikrar wakaf, serta menyalurkan manfaat kepada mauquf alaih.",
       "order": 3
     },
     {
@@ -290,9 +303,15 @@
     {
       "id": "q-006",
       "testId": "test-002",
-      "type": "true_false",
-      "question": "Hasil pengelolaan wakaf boleh digunakan untuk kepentingan pribadi pengelola tanpa batas selama aset utamanya masih ada. (Soal Contoh)",
-      "correctAnswer": false,
+      "type": "multiple_choice",
+      "question": "Kepada siapakah hasil pengelolaan harta benda wakaf wajib disalurkan? (Soal Contoh)",
+      "options": [
+        "Penerima manfaat (mauquf alaih) sesuai ikrar dan ketentuan syariah",
+        "Pengelola pribadi tanpa batas dan tanpa laporan",
+        "Pihak luar yang tidak terkait dengan tujuan wakaf",
+        "Disimpan selamanya tanpa pernah disalurkan"
+      ],
+      "correctAnswer": 0,
       "points": 10,
       "explanation": "Hasil pengelolaan wakaf wajib disalurkan kepada mauquf alaih sesuai ketentuan syariah dan peraturan yang berlaku.",
       "order": 3
@@ -300,12 +319,17 @@
     {
       "id": "q-007",
       "testId": "test-002",
-      "type": "essay",
-      "question": "Uraikan perbedaan mendasar antara wakaf dengan sedekah biasa serta dampaknya bagi pemberdayaan umat! (Soal Contoh)",
-      "modelAnswer": "Sedekah biasa dapat langsung habis dikonsumsi penerima, sedangkan wakaf menahan pokok hartanya agar tetap ada dan hanya menyalurkan hasil atau manfaatnya secara berkelanjutan sehingga menciptakan dampak jangka panjang bagi pendidikan, dakwah, dan ekonomi umat.",
-      "rubric": "Ketepatan pembedaan pokok vs manfaat (10 poin), penjelasan keberlanjutan dampak umat (10 poin).",
-      "instructions": "Berikan contoh sederhana jika diperlukan.",
+      "type": "multiple_choice",
+      "question": "Manakah perbedaan mendasar antara wakaf dengan sedekah biasa? (Soal Contoh)",
+      "options": [
+        "Wakaf menahan pokok hartanya agar tetap lestari dan hanya menyalurkan manfaatnya secara berkelanjutan",
+        "Wakaf hanya boleh diberikan satu kali dan langsung habis dikonsumsi",
+        "Sedekah biasa wajib berupa tanah bersertifikat resmi",
+        "Wakaf tidak memiliki aturan penyaluran manfaat bagi umat"
+      ],
+      "correctAnswer": 0,
       "points": 20,
+      "explanation": "Sedekah biasa dapat langsung habis dikonsumsi penerima, sedangkan wakaf menahan pokok hartanya agar tetap ada dan menyalurkan manfaatnya secara berkelanjutan.",
       "order": 4
     },
     {
@@ -327,11 +351,17 @@
     {
       "id": "q-009",
       "testId": "test-003",
-      "type": "true_false",
-      "question": "Transparansi pelaporan merupakan bagian dari akuntabilitas nazhir terhadap wakif dan masyarakat. (Soal Contoh)",
-      "correctAnswer": true,
+      "type": "multiple_choice",
+      "question": "Mengapa transparansi pelaporan penting dalam pengelolaan wakaf oleh nazhir? (Soal Contoh)",
+      "options": [
+        "Untuk menjaga kepercayaan dan akuntabilitas kepada wakif serta masyarakat",
+        "Agar laporan tidak dapat diperiksa oleh pihak mana pun",
+        "Untuk menyembunyikan jumlah hasil manfaat wakaf",
+        "Supaya tugas pengawasan tidak perlu dilakukan"
+      ],
+      "correctAnswer": 0,
       "points": 10,
-      "explanation": "Benar, pelaporan yang jelas menjaga kepercayaan dan akuntabilitas amanah wakaf.",
+      "explanation": "Pelaporan yang jelas dan transparan menjaga kepercayaan serta akuntabilitas amanah wakaf.",
       "order": 2
     },
     {
@@ -353,9 +383,15 @@
     {
       "id": "q-011",
       "testId": "test-004",
-      "type": "true_false",
-      "question": "Nazhir diperbolehkan mengurangi nilai pokok wakaf untuk menutup biaya operasional rutin tanpa perencanaan pemulihan. (Soal Contoh)",
-      "correctAnswer": false,
+      "type": "multiple_choice",
+      "question": "Bagaimanakah sikap nazhir yang tepat terhadap nilai pokok aset wakaf? (Soal Contoh)",
+      "options": [
+        "Menjaga keutuhan pokok wakaf agar tidak tergerus untuk biaya operasional rutin tanpa pemulihan",
+        "Mengurangi pokok wakaf setiap bulan untuk belanja konsumtif",
+        "Membagikan pokok wakaf hingga habis pada tahun pertama",
+        "Mengabaikan pencatatan nilai pokok aset wakaf"
+      ],
+      "correctAnswer": 0,
       "points": 10,
       "explanation": "Pokok wakaf wajib dijaga keutuhannya dan tidak boleh tergerus.",
       "order": 2
@@ -379,22 +415,33 @@
     {
       "id": "q-013",
       "testId": "test-005",
-      "type": "true_false",
-      "question": "Menghormati guru dan menjaga kebersihan majelis ilmu merupakan bagian dari adab thalibul ilmi. (Soal Contoh)",
-      "correctAnswer": true,
-      "points": 5,
-      "explanation": "Benar, adab terhadap guru dan majelis ilmu mendahului penyampaian ilmu.",
+      "type": "multiple_choice",
+      "question": "Manakah sikap yang termasuk bagian dari adab thalibul ilmi di majelis ilmu? (Soal Contoh)",
+      "options": [
+        "Menghormati guru dan menjaga kebersihan serta ketertiban majelis ilmu",
+        "Memotong penjelasan guru saat pelajaran berlangsung",
+        "Datang terlambat secara sengaja tanpa uzur",
+        "Mengabaikan catatan dan nasihat pengajar"
+      ],
+      "correctAnswer": 0,
+      "points": 10,
+      "explanation": "Adab terhadap guru dan majelis ilmu mendahului penyampaian ilmu agar ilmu membawa keberkahan.",
       "order": 2
     },
     {
       "id": "q-014",
       "testId": "test-005",
-      "type": "essay",
+      "type": "multiple_choice",
       "question": "Bagaimana hubungan antara adab penuntut ilmu dengan kualitas kepemimpinan seorang muslimah? (Soal Contoh)",
-      "modelAnswer": "Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan sehingga kepemimpinan berjalan dengan amanah dan dihormati oleh lingkungan sekitar.",
-      "rubric": "Keterkaitan adab dengan amanah/keteladanan (10 poin) dan kejelasan penyampaian (10 poin).",
-      "instructions": "Jelaskan dalam 2–4 kalimat yang runtut.",
-      "points": 20,
+      "options": [
+        "Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan dalam memimpin",
+        "Adab membuat seorang pemimpin enggan bermusyawarah",
+        "Adab hanya diperlukan saat belajar dan tidak relevan dalam kepemimpinan",
+        "Kepemimpinan hanya ditentukan oleh suara keras tanpa akhlak"
+      ],
+      "correctAnswer": 0,
+      "points": 15,
+      "explanation": "Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan sehingga kepemimpinan berjalan dengan amanah.",
       "order": 3
     },
     {
@@ -416,85 +463,21 @@
     {
       "id": "q-016",
       "testId": "test-006",
-      "type": "true_false",
-      "question": "Kepemimpinan yang baik selalu disertai kesediaan untuk bermusyawarah dan menerima nasihat. (Soal Contoh)",
-      "correctAnswer": true,
+      "type": "multiple_choice",
+      "question": "Prinsip apakah yang selalu menyertai kepemimpinan Islam yang baik dalam mengambil keputusan bersama? (Soal Contoh)",
+      "options": [
+        "Kesediaan untuk bermusyawarah (syura) dan menerima nasihat yang baik",
+        "Menolak seluruh masukan dari anggota",
+        "Memutuskan persoalan sepihak tanpa pertimbangan",
+        "Menghindari tanggung jawab saat terjadi masalah"
+      ],
+      "correctAnswer": 0,
       "points": 10,
       "explanation": "Musyawarah (syura) merupakan prinsip utama kepemimpinan Islam.",
       "order": 2
     }
   ],
-  "attempts": [
-    {
-      "id": "attempt-demo-001",
-      "testId": "test-005",
-      "participantId": "demo-participant-01",
-      "answers": {
-        "q-012": 0,
-        "q-013": true,
-        "q-014": "Adab membentuk sikap amanah, rendah hati, dan keteladanan bagi seorang muslimah sehingga kepemimpinannya membawa keberkahan serta dipercaya oleh jamaah."
-      },
-      "questionSnapshots": [
-        {
-          "id": "q-012",
-          "testId": "test-005",
-          "type": "multiple_choice",
-          "question": "Apa langkah pertama yang ditekankan dalam adab menuntut ilmu? (Soal Contoh)",
-          "options": [
-            "Meluruskan niat ikhlas karena Allah Ta'ala",
-            "Membeli perlengkapan paling mahal",
-            "Berdebat dengan teman sebaya",
-            "Menunda mengulang pelajaran"
-          ],
-          "correctAnswer": 0,
-          "points": 10,
-          "explanation": "Keikhlasan niat adalah fondasi utama keberkahan ilmu.",
-          "order": 1
-        },
-        {
-          "id": "q-013",
-          "testId": "test-005",
-          "type": "true_false",
-          "question": "Menghormati guru dan menjaga kebersihan majelis ilmu merupakan bagian dari adab thalibul ilmi. (Soal Contoh)",
-          "correctAnswer": true,
-          "points": 5,
-          "explanation": "Benar, adab terhadap guru dan majelis ilmu mendahului penyampaian ilmu.",
-          "order": 2
-        },
-        {
-          "id": "q-014",
-          "testId": "test-005",
-          "type": "essay",
-          "question": "Bagaimana hubungan antara adab penuntut ilmu dengan kualitas kepemimpinan seorang muslimah? (Soal Contoh)",
-          "modelAnswer": "Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan sehingga kepemimpinan berjalan dengan amanah dan dihormati oleh lingkungan sekitar.",
-          "rubric": "Keterkaitan adab dengan amanah/keteladanan (10 poin) dan kejelasan penyampaian (10 poin).",
-          "instructions": "Jelaskan dalam 2–4 kalimat yang runtut.",
-          "points": 20,
-          "order": 3
-        }
-      ],
-      "testSnapshot": {
-        "id": "test-005",
-        "chapterId": "chap-003",
-        "type": "pre_test",
-        "title": "Pre-Test Bab 1: Adab Penuntut Ilmu",
-        "passingScore": 70
-      },
-      "grading": {
-        "objectivePoints": 15,
-        "maxObjectivePoints": 15,
-        "maxEssayPoints": 20,
-        "totalMaxPoints": 35,
-        "essayGrades": {},
-        "manualPoints": null,
-        "finalPoints": null,
-        "finalScore": null,
-        "passed": null,
-        "status": "pending_review"
-      },
-      "submittedAt": "2026-11-18T10:00:00+07:00"
-    }
-  ],
+  "attempts": [],
   "inProgress": {},
   "learningProgress": {
     "completedChapterIds": []

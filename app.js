@@ -26,7 +26,8 @@
   const DEFAULT_SEED_DATA = {
     meta: {
       institution: 'Pesantren Kader Nazhir Putri Jalaluddin',
-      version: '1.0.0'
+      version: '2.1.0',
+      schemaVersion: '2.1.0'
     },
     documents: [
       {
@@ -531,6 +532,7 @@
      ------------------------------------------------------------------------ */
   const DataStore = {
     state: {
+      meta: { ...DEFAULT_SEED_DATA.meta },
       documents: [],
       videos: [],
       subjects: [],
@@ -545,9 +547,13 @@
     async bootstrap() {
       const data = await StorageService.init();
       this.applyState(data);
+      if (typeof window.PKNJ?.migrateStateV21 === 'function') {
+        window.PKNJ.migrateStateV21();
+      }
     },
 
     applyState(data) {
+      this.state.meta = data.meta ? Utils.clone(data.meta) : { ...DEFAULT_SEED_DATA.meta };
       this.state.documents = data.documents || [];
       this.state.videos = data.videos || [];
       this.state.subjects = data.subjects || [];
@@ -561,7 +567,7 @@
 
     persist() {
       StorageService.save({
-        meta: { ...DEFAULT_SEED_DATA.meta, version: '2.0.0' },
+        meta: { ...DEFAULT_SEED_DATA.meta, ...(this.state.meta || {}), version: '2.1.0' },
         documents: this.state.documents,
         videos: this.state.videos,
         subjects: this.state.subjects,
@@ -779,7 +785,15 @@
       const tests = this.state.tests || [];
       const questions = this.state.questions || [];
       const attempts = this.state.attempts || [];
-      const pendingEssayCount = attempts.filter((a) => a.grading?.status === 'pending_review').length;
+      const questionsByTest = new Map();
+      questions.forEach((q) => {
+        if (!questionsByTest.has(q.testId)) questionsByTest.set(q.testId, []);
+        questionsByTest.get(q.testId).push(q);
+      });
+      const testsNeedingAdjustmentCount = tests.filter((t) => {
+        const qs = questionsByTest.get(t.id) || [];
+        return qs.some((q) => q.type !== 'multiple_choice');
+      }).length;
 
       return {
         totalDocuments: docs.length,
@@ -794,13 +808,16 @@
         totalPostTests: tests.filter((t) => t.type === 'post_test').length,
         totalQuestions: questions.length,
         totalAttempts: attempts.length,
-        pendingEssayCount
+        testsNeedingAdjustmentCount
       };
     },
 
     async resetDemo() {
       const fresh = await StorageService.resetDemo();
       this.applyState(fresh);
+      if (typeof window.PKNJ?.migrateStateV21 === 'function') {
+        window.PKNJ.migrateStateV21();
+      }
     }
   };
 
@@ -2051,7 +2068,6 @@
     videoFilters: { query: '', status: 'all' },
 
     renderShell(activeRoute, breadcrumbText, contentHtml) {
-      const pendingEssayCount = DataStore.getStats().pendingEssayCount || 0;
       return `
         <div class="admin-shell ${this.sidebarCollapsed ? 'is-collapsed' : ''}" id="admin-shell">
           <div class="admin-sidebar-backdrop" id="admin-sidebar-backdrop"></div>
@@ -2072,11 +2088,6 @@
               <a href="#/admin/pembelajaran" class="admin-nav__item ${activeRoute.startsWith('#/admin/pembelajaran') ? 'is-active' : ''}">
                 ${Utils.icon('graduation-cap', 19)}
                 <span class="sidebar-hide">Pembelajaran &amp; Kuis</span>
-              </a>
-              <a href="#/admin/penilaian" class="admin-nav__item ${activeRoute.startsWith('#/admin/penilaian') ? 'is-active' : ''}">
-                ${Utils.icon('clipboard-check', 19)}
-                <span class="sidebar-hide">Penilaian Essay</span>
-                ${pendingEssayCount > 0 ? `<span class="sidebar-badge sidebar-hide" title="${pendingEssayCount} pengerjaan menunggu penilaian">${pendingEssayCount}</span>` : ''}
               </a>
               <a href="#/admin/dokumen" class="admin-nav__item ${activeRoute === '#/admin/dokumen' ? 'is-active' : ''}">
                 ${Utils.icon('file-text', 19)}
@@ -2155,16 +2166,16 @@
           </div>
         </div>
 
-        ${stats.pendingEssayCount > 0 ? `
+        ${stats.testsNeedingAdjustmentCount > 0 ? `
           <div class="alert-box alert-box--warn" style="margin-bottom:1.25rem;justify-content:space-between;align-items:center;flex-wrap:wrap;">
             <div style="display:flex;align-items:center;gap:0.65rem;">
-              ${Utils.icon('bell-ring', 19)}
+              ${Utils.icon('alert-triangle', 19)}
               <div>
-                <strong>Perhatian Pengajar:</strong> Terdapat <strong>${stats.pendingEssayCount}</strong> pengerjaan tes dengan jawaban essay yang belum diperiksa.
+                <strong>Perhatian Penyesuaian V2.1:</strong> Terdapat <strong>${stats.testsNeedingAdjustmentCount}</strong> tes lama yang masih memiliki soal non-pilihan-ganda dan berstatus <em>Perlu Penyesuaian</em>.
               </div>
             </div>
-            <a href="#/admin/penilaian" class="btn btn--primary btn--sm">
-              ${Utils.icon('clipboard-check', 15)} Periksa Jawaban Essay
+            <a href="#/admin/pembelajaran" class="btn btn--primary btn--sm">
+              ${Utils.icon('sliders', 15)} Sesuaikan di Quiz Builder
             </a>
           </div>
         ` : ''}
@@ -2244,15 +2255,6 @@
             </div>
             <div class="stat-card__icon" style="background:var(--purple-light);color:var(--purple-main);">
               ${Utils.icon('users', 22)}
-            </div>
-          </article>
-          <article class="stat-card" style="${stats.pendingEssayCount > 0 ? 'border-color:var(--orange-300);background:var(--orange-50);' : ''}">
-            <div>
-              <div class="stat-card__label">Essay Menunggu Penilaian</div>
-              <div class="stat-card__value">${stats.pendingEssayCount}</div>
-            </div>
-            <div class="stat-card__icon" style="background:var(--orange-100);color:var(--orange-800);">
-              ${Utils.icon('clipboard-check', 22)}
             </div>
           </article>
         </div>

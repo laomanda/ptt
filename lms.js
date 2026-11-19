@@ -1,7 +1,8 @@
 /* ==========================================================================
-   MODUL V2 — MINI LMS, MIXED QUESTION QUIZ BUILDER & GRADING SYSTEM
+   MODUL V2.1 — MINI LMS, QUIZ BUILDER PILIHAN GANDA & AUTO-GRADING SYSTEM
    Pesantren Kader Nazhir Putri Jalaluddin
-   Mendukung: Pilihan Ganda, Benar/Salah (boolean), dan Essay (Penilaian Manual)
+   Soal aktif: Pilihan Ganda (A–D) dengan penilaian otomatis 100%.
+   Menjaga kompatibilitas baca-saja untuk arsip riwayat V2 lama.
    ========================================================================== */
 
 (() => {
@@ -17,7 +18,6 @@
      ------------------------------------------------------------------------ */
   CONFIG.PARTICIPANT_ID = 'demo-participant-01';
   CONFIG.PARTICIPANT_LABEL = 'Peserta Demo 01';
-  CONFIG.ESSAY_MAX_CHARS = 5000;
 
   CONFIG.LMS_SEED = {
     subjects: [
@@ -104,7 +104,7 @@
         chapterId: 'chap-001',
         type: 'post_test',
         title: 'Post-Test Bab 1: Hakikat Wakaf & Amanah Nazhir',
-        description: 'Evaluasi akhir Bab 1 terdiri atas soal Pilihan Ganda, Benar/Salah, dan Essay uraian.',
+        description: 'Evaluasi akhir Bab 1 menggunakan soal Pilihan Ganda dengan penilaian otomatis.',
         passingScore: 75,
         demo: true,
         status: 'published',
@@ -175,22 +175,33 @@
       {
         id: 'q-002',
         testId: 'test-001',
-        type: 'true_false',
-        question: 'Wakaf hanya dapat dilakukan dalam bentuk tanah dan bangunan, tidak dapat berbentuk uang atau aset bergerak lainnya. (Soal Contoh)',
-        correctAnswer: false,
-        points: 5,
-        explanation: 'Pernyataan tersebut salah. Selain tanah dan bangunan, fikih dan regulasi wakaf modern juga mengenal wakaf uang dan aset bergerak produktif.',
+        type: 'multiple_choice',
+        question: 'Selain tanah dan bangunan, bentuk aset apakah yang juga dikenal dalam fikih dan regulasi wakaf modern? (Soal Contoh)',
+        options: [
+          'Wakaf uang dan aset bergerak produktif',
+          'Barang sekali pakai yang langsung habis',
+          'Harta hasil pinjaman berbunga tinggi',
+          'Hak milik sementara selama satu hari'
+        ],
+        correctAnswer: 0,
+        points: 10,
+        explanation: 'Selain tanah dan bangunan, fikih dan regulasi wakaf modern juga mengenal wakaf uang dan aset bergerak produktif.',
         order: 2
       },
       {
         id: 'q-003',
         testId: 'test-001',
-        type: 'essay',
-        question: 'Jelaskan secara singkat apa peran penting seorang nazhir dalam menjaga amanah wakaf! (Soal Contoh)',
-        modelAnswer: 'Nazhir berperan menjaga keutuhan pokok aset wakaf, mengelola secara produktif sesuai syariah dan ikrar wakaf, serta menyalurkan hasil manfaat secara transparan kepada penerima manfaat (mauquf alaih).',
-        rubric: 'Menyebutkan minimal 2 peran: menjaga pokok aset (10 poin) dan mengelola/menyalurkan manfaat secara amanah (10 poin).',
-        instructions: 'Tuliskan jawaban dengan bahasa yang ringkas dan jelas (maksimal 5.000 karakter).',
-        points: 20,
+        type: 'multiple_choice',
+        question: 'Apakah peran utama seorang nazhir dalam menjaga amanah wakaf? (Soal Contoh)',
+        options: [
+          'Menjaga pokok aset, mengelola secara produktif sesuai syariah, dan menyalurkan manfaatnya',
+          'Menjual seluruh aset wakaf ketika harga pasar sedang turun',
+          'Menggunakan seluruh hasil wakaf untuk keperluan pribadi tanpa pencatatan',
+          'Mengubah peruntukan wakaf sesuka hati tanpa dasar ikrar wakaf'
+        ],
+        correctAnswer: 0,
+        points: 10,
+        explanation: 'Nazhir berperan menjaga keutuhan pokok aset wakaf, mengelolanya secara produktif sesuai syariah dan ikrar wakaf, serta menyalurkan manfaat kepada mauquf alaih.',
         order: 3
       },
       {
@@ -223,9 +234,15 @@
       {
         id: 'q-006',
         testId: 'test-002',
-        type: 'true_false',
-        question: 'Hasil pengelolaan wakaf boleh digunakan untuk kepentingan pribadi pengelola tanpa batas selama aset utamanya masih ada. (Soal Contoh)',
-        correctAnswer: false,
+        type: 'multiple_choice',
+        question: 'Kepada siapakah hasil pengelolaan harta benda wakaf wajib disalurkan? (Soal Contoh)',
+        options: [
+          'Penerima manfaat (mauquf alaih) sesuai ikrar dan ketentuan syariah',
+          'Pengelola pribadi tanpa batas dan tanpa laporan',
+          'Pihak luar yang tidak terkait dengan tujuan wakaf',
+          'Disimpan selamanya tanpa pernah disalurkan'
+        ],
+        correctAnswer: 0,
         points: 10,
         explanation: 'Hasil pengelolaan wakaf wajib disalurkan kepada mauquf alaih sesuai ketentuan syariah dan peraturan yang berlaku.',
         order: 3
@@ -233,12 +250,17 @@
       {
         id: 'q-007',
         testId: 'test-002',
-        type: 'essay',
-        question: 'Uraikan perbedaan mendasar antara wakaf dengan sedekah biasa serta dampaknya bagi pemberdayaan umat! (Soal Contoh)',
-        modelAnswer: 'Sedekah biasa dapat langsung habis dikonsumsi penerima, sedangkan wakaf menahan pokok hartanya agar tetap ada dan hanya menyalurkan hasil atau manfaatnya secara berkelanjutan sehingga menciptakan dampak jangka panjang bagi pendidikan, dakwah, dan ekonomi umat.',
-        rubric: 'Ketepatan pembedaan pokok vs manfaat (10 poin), penjelasan keberlanjutan dampak umat (10 poin).',
-        instructions: 'Berikan contoh sederhana jika diperlukan.',
+        type: 'multiple_choice',
+        question: 'Manakah perbedaan mendasar antara wakaf dengan sedekah biasa? (Soal Contoh)',
+        options: [
+          'Wakaf menahan pokok hartanya agar tetap lestari dan hanya menyalurkan manfaatnya secara berkelanjutan',
+          'Wakaf hanya boleh diberikan satu kali dan langsung habis dikonsumsi',
+          'Sedekah biasa wajib berupa tanah bersertifikat resmi',
+          'Wakaf tidak memiliki aturan penyaluran manfaat bagi umat'
+        ],
+        correctAnswer: 0,
         points: 20,
+        explanation: 'Sedekah biasa dapat langsung habis dikonsumsi penerima, sedangkan wakaf menahan pokok hartanya agar tetap ada dan menyalurkan manfaatnya secara berkelanjutan.',
         order: 4
       },
       {
@@ -260,11 +282,17 @@
       {
         id: 'q-009',
         testId: 'test-003',
-        type: 'true_false',
-        question: 'Transparansi pelaporan merupakan bagian dari akuntabilitas nazhir terhadap wakif dan masyarakat. (Soal Contoh)',
-        correctAnswer: true,
+        type: 'multiple_choice',
+        question: 'Mengapa transparansi pelaporan penting dalam pengelolaan wakaf oleh nazhir? (Soal Contoh)',
+        options: [
+          'Untuk menjaga kepercayaan dan akuntabilitas kepada wakif serta masyarakat',
+          'Agar laporan tidak dapat diperiksa oleh pihak mana pun',
+          'Untuk menyembunyikan jumlah hasil manfaat wakaf',
+          'Supaya tugas pengawasan tidak perlu dilakukan'
+        ],
+        correctAnswer: 0,
         points: 10,
-        explanation: 'Benar, pelaporan yang jelas menjaga kepercayaan dan akuntabilitas amanah wakaf.',
+        explanation: 'Pelaporan yang jelas dan transparan menjaga kepercayaan serta akuntabilitas amanah wakaf.',
         order: 2
       },
       {
@@ -286,9 +314,15 @@
       {
         id: 'q-011',
         testId: 'test-004',
-        type: 'true_false',
-        question: 'Nazhir diperbolehkan mengurangi nilai pokok wakaf untuk menutup biaya operasional rutin tanpa perencanaan pemulihan. (Soal Contoh)',
-        correctAnswer: false,
+        type: 'multiple_choice',
+        question: 'Bagaimanakah sikap nazhir yang tepat terhadap nilai pokok aset wakaf? (Soal Contoh)',
+        options: [
+          'Menjaga keutuhan pokok wakaf agar tidak tergerus untuk biaya operasional rutin tanpa pemulihan',
+          'Mengurangi pokok wakaf setiap bulan untuk belanja konsumtif',
+          'Membagikan pokok wakaf hingga habis pada tahun pertama',
+          'Mengabaikan pencatatan nilai pokok aset wakaf'
+        ],
+        correctAnswer: 0,
         points: 10,
         explanation: 'Pokok wakaf wajib dijaga keutuhannya dan tidak boleh tergerus.',
         order: 2
@@ -312,22 +346,33 @@
       {
         id: 'q-013',
         testId: 'test-005',
-        type: 'true_false',
-        question: 'Menghormati guru dan menjaga kebersihan majelis ilmu merupakan bagian dari adab thalibul ilmi. (Soal Contoh)',
-        correctAnswer: true,
-        points: 5,
-        explanation: 'Benar, adab terhadap guru dan majelis ilmu mendahului penyampaian ilmu.',
+        type: 'multiple_choice',
+        question: 'Manakah sikap yang termasuk bagian dari adab thalibul ilmi di majelis ilmu? (Soal Contoh)',
+        options: [
+          'Menghormati guru dan menjaga kebersihan serta ketertiban majelis ilmu',
+          'Memotong penjelasan guru saat pelajaran berlangsung',
+          'Datang terlambat secara sengaja tanpa uzur',
+          'Mengabaikan catatan dan nasihat pengajar'
+        ],
+        correctAnswer: 0,
+        points: 10,
+        explanation: 'Adab terhadap guru dan majelis ilmu mendahului penyampaian ilmu agar ilmu membawa keberkahan.',
         order: 2
       },
       {
         id: 'q-014',
         testId: 'test-005',
-        type: 'essay',
+        type: 'multiple_choice',
         question: 'Bagaimana hubungan antara adab penuntut ilmu dengan kualitas kepemimpinan seorang muslimah? (Soal Contoh)',
-        modelAnswer: 'Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan sehingga kepemimpinan berjalan dengan amanah dan dihormati oleh lingkungan sekitar.',
-        rubric: 'Keterkaitan adab dengan amanah/keteladanan (10 poin) dan kejelasan penyampaian (10 poin).',
-        instructions: 'Jelaskan dalam 2–4 kalimat yang runtut.',
-        points: 20,
+        options: [
+          'Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan dalam memimpin',
+          'Adab membuat seorang pemimpin enggan bermusyawarah',
+          'Adab hanya diperlukan saat belajar dan tidak relevan dalam kepemimpinan',
+          'Kepemimpinan hanya ditentukan oleh suara keras tanpa akhlak'
+        ],
+        correctAnswer: 0,
+        points: 15,
+        explanation: 'Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan sehingga kepemimpinan berjalan dengan amanah.',
         order: 3
       },
       {
@@ -349,85 +394,21 @@
       {
         id: 'q-016',
         testId: 'test-006',
-        type: 'true_false',
-        question: 'Kepemimpinan yang baik selalu disertai kesediaan untuk bermusyawarah dan menerima nasihat. (Soal Contoh)',
-        correctAnswer: true,
+        type: 'multiple_choice',
+        question: 'Prinsip apakah yang selalu menyertai kepemimpinan Islam yang baik dalam mengambil keputusan bersama? (Soal Contoh)',
+        options: [
+          'Kesediaan untuk bermusyawarah (syura) dan menerima nasihat yang baik',
+          'Menolak seluruh masukan dari anggota',
+          'Memutuskan persoalan sepihak tanpa pertimbangan',
+          'Menghindari tanggung jawab saat terjadi masalah'
+        ],
+        correctAnswer: 0,
         points: 10,
         explanation: 'Musyawarah (syura) merupakan prinsip utama kepemimpinan Islam.',
         order: 2
       }
     ],
-    attempts: [
-      {
-        id: 'attempt-demo-001',
-        testId: 'test-005',
-        participantId: 'demo-participant-01',
-        answers: {
-          'q-012': 0,
-          'q-013': true,
-          'q-014': 'Adab membentuk sikap amanah, rendah hati, dan keteladanan bagi seorang muslimah sehingga kepemimpinannya membawa keberkahan serta dipercaya oleh jamaah.'
-        },
-        questionSnapshots: [
-          {
-            id: 'q-012',
-            testId: 'test-005',
-            type: 'multiple_choice',
-            question: 'Apa langkah pertama yang ditekankan dalam adab menuntut ilmu? (Soal Contoh)',
-            options: [
-              "Meluruskan niat ikhlas karena Allah Ta'ala",
-              'Membeli perlengkapan paling mahal',
-              'Berdebat dengan teman sebaya',
-              'Menunda mengulang pelajaran'
-            ],
-            correctAnswer: 0,
-            points: 10,
-            explanation: 'Keikhlasan niat adalah fondasi utama keberkahan ilmu.',
-            order: 1
-          },
-          {
-            id: 'q-013',
-            testId: 'test-005',
-            type: 'true_false',
-            question: 'Menghormati guru dan menjaga kebersihan majelis ilmu merupakan bagian dari adab thalibul ilmi. (Soal Contoh)',
-            correctAnswer: true,
-            points: 5,
-            explanation: 'Benar, adab terhadap guru dan majelis ilmu mendahului penyampaian ilmu.',
-            order: 2
-          },
-          {
-            id: 'q-014',
-            testId: 'test-005',
-            type: 'essay',
-            question: 'Bagaimana hubungan antara adab penuntut ilmu dengan kualitas kepemimpinan seorang muslimah? (Soal Contoh)',
-            modelAnswer: 'Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan sehingga kepemimpinan berjalan dengan amanah dan dihormati oleh lingkungan sekitar.',
-            rubric: 'Keterkaitan adab dengan amanah/keteladanan (10 poin) dan kejelasan penyampaian (10 poin).',
-            instructions: 'Jelaskan dalam 2–4 kalimat yang runtut.',
-            points: 20,
-            order: 3
-          }
-        ],
-        testSnapshot: {
-          id: 'test-005',
-          chapterId: 'chap-003',
-          type: 'pre_test',
-          title: 'Pre-Test Bab 1: Adab Penuntut Ilmu',
-          passingScore: 70
-        },
-        grading: {
-          objectivePoints: 15,
-          maxObjectivePoints: 15,
-          maxEssayPoints: 20,
-          totalMaxPoints: 35,
-          essayGrades: {},
-          manualPoints: null,
-          finalPoints: null,
-          finalScore: null,
-          passed: null,
-          status: 'pending_review'
-        },
-        submittedAt: '2026-11-18T10:00:00+07:00'
-      }
-    ],
+    attempts: [],
     inProgress: {},
     learningProgress: { completedChapterIds: [] }
   };
@@ -439,8 +420,8 @@
     questionTypeLabel(type) {
       const map = {
         multiple_choice: 'Pilihan Ganda',
-        true_false: 'Benar / Salah',
-        essay: 'Essay'
+        true_false: 'Benar / Salah (Arsip V2)',
+        essay: 'Essay (Arsip V2)'
       };
       return map[type] || 'Soal';
     },
@@ -470,118 +451,94 @@
     },
 
     validateQuestionPayload(payload) {
+      if (!payload || payload.type !== 'multiple_choice') {
+        return { valid: false, error: 'Semua soal aktif wajib bertipe Pilihan Ganda (A, B, C, D).' };
+      }
+
       const question = (payload.question || '').trim();
       if (!question) {
-        return { valid: false, error: 'Teks pertanyaan / pernyataan wajib diisi.' };
+        return { valid: false, error: 'Teks pertanyaan wajib diisi.' };
       }
 
       const points = Number(payload.points);
       if (!Number.isFinite(points) || points <= 0) {
-        return { valid: false, error: 'Bobot poin harus berupa angka lebih besar dari 0.' };
+        return { valid: false, error: 'Bobot poin harus berupa angka positif lebih dari 0.' };
       }
 
-      if (payload.type === 'multiple_choice') {
-        const opts = Array.isArray(payload.options) ? payload.options.map((o) => String(o || '').trim()) : [];
-        if (opts.length !== 4 || opts.some((o) => !o)) {
-          return { valid: false, error: 'Keempat pilihan jawaban (A, B, C, dan D) wajib diisi.' };
-        }
-        const correctIdx = Number(payload.correctAnswer);
-        if (!Number.isInteger(correctIdx) || correctIdx < 0 || correctIdx > 3) {
-          return { valid: false, error: 'Pilih tepat satu jawaban benar (A, B, C, atau D).' };
-        }
-      } else if (payload.type === 'true_false') {
-        if (typeof payload.correctAnswer !== 'boolean') {
-          return { valid: false, error: 'Pilih jawaban benar (Benar atau Salah).' };
-        }
-      } else if (payload.type === 'essay') {
-        if (!(payload.modelAnswer || '').trim()) {
-          return { valid: false, error: 'Pedoman / contoh jawaban essay wajib diisi untuk acuan pengajar.' };
-        }
-        if (!(payload.rubric || '').trim()) {
-          return { valid: false, error: 'Rubrik penilaian essay wajib diisi.' };
-        }
-      } else {
-        return { valid: false, error: 'Jenis soal tidak dikenal.' };
+      const opts = Array.isArray(payload.options) ? payload.options.map((o) => String(o || '').trim()) : [];
+      if (opts.length !== 4 || opts.some((o) => !o)) {
+        return { valid: false, error: 'Keempat pilihan jawaban (A, B, C, dan D) wajib diisi.' };
+      }
+
+      const rawCorrect = payload.correctAnswer;
+      if (rawCorrect === '' || rawCorrect === null || rawCorrect === undefined) {
+        return { valid: false, error: 'Pilih tepat satu jawaban benar (A, B, C, atau D).' };
+      }
+      const correctIdx = Number(rawCorrect);
+      if (!Number.isInteger(correctIdx) || correctIdx < 0 || correctIdx > 3) {
+        return { valid: false, error: 'Pilih tepat satu jawaban benar (A, B, C, atau D).' };
       }
 
       return { valid: true };
     },
 
-    evaluateSubmission(test, orderedQuestions, rawAnswers) {
+    evaluateSubmission(test, orderedQuestions, rawAnswers = {}) {
+      if (!Array.isArray(orderedQuestions) || !orderedQuestions.length) {
+        throw new Error('Tes ini belum memiliki soal yang valid.');
+      }
+
+      for (const q of orderedQuestions) {
+        const check = this.validateQuestionPayload(q);
+        if (!check.valid) {
+          throw new Error('Tes ini masih memiliki soal yang belum valid atau perlu penyesuaian ke Pilihan Ganda.');
+        }
+      }
+
       const snapshots = Utils.clone(orderedQuestions);
       const sanitizedAnswers = {};
 
-      let objectivePoints = 0;
-      let maxObjectivePoints = 0;
-      let maxEssayPoints = 0;
+      let earnedPoints = 0;
       let totalMaxPoints = 0;
-      let hasEssay = false;
+      let correctCount = 0;
+      let wrongCount = 0;
+      let unansweredCount = 0;
 
       for (const q of snapshots) {
         const pts = Number(q.points) || 0;
         totalMaxPoints += pts;
         const ans = rawAnswers[q.id];
 
-        if (q.type === 'multiple_choice') {
-          maxObjectivePoints += pts;
-          if (typeof ans === 'number' && Number.isInteger(ans) && ans >= 0 && ans <= 3) {
-            sanitizedAnswers[q.id] = ans;
-            if (ans === q.correctAnswer) {
-              objectivePoints += pts;
-            }
+        if (typeof ans === 'number' && Number.isInteger(ans) && ans >= 0 && ans <= 3) {
+          sanitizedAnswers[q.id] = ans;
+          if (ans === q.correctAnswer) {
+            earnedPoints += pts;
+            correctCount += 1;
           } else {
-            sanitizedAnswers[q.id] = null;
+            wrongCount += 1;
           }
-        } else if (q.type === 'true_false') {
-          maxObjectivePoints += pts;
-          if (typeof ans === 'boolean') {
-            sanitizedAnswers[q.id] = ans;
-            if (ans === q.correctAnswer) {
-              objectivePoints += pts;
-            }
-          } else {
-            sanitizedAnswers[q.id] = null;
-          }
-        } else if (q.type === 'essay') {
-          hasEssay = true;
-          maxEssayPoints += pts;
-          const textAns = typeof ans === 'string' ? ans.slice(0, CONFIG.ESSAY_MAX_CHARS) : '';
-          sanitizedAnswers[q.id] = textAns;
+        } else {
+          sanitizedAnswers[q.id] = null;
+          unansweredCount += 1;
         }
       }
 
+      const finalPoints = Math.round(earnedPoints * 100) / 100;
+      const roundedMax = Math.round(totalMaxPoints * 100) / 100;
       const passingScore = Math.max(0, Math.min(100, Number(test.passingScore) || 0));
+      const finalScore = roundedMax > 0 ? this.roundScore((finalPoints / roundedMax) * 100) : 0;
 
-      let grading;
-      if (!hasEssay) {
-        const finalPoints = objectivePoints;
-        const finalScore = totalMaxPoints > 0 ? this.roundScore((finalPoints / totalMaxPoints) * 100) : 0;
-        grading = {
-          objectivePoints,
-          maxObjectivePoints,
-          maxEssayPoints: 0,
-          totalMaxPoints,
-          essayGrades: {},
-          manualPoints: 0,
-          finalPoints,
-          finalScore,
-          passed: finalScore >= passingScore,
-          status: 'graded'
-        };
-      } else {
-        grading = {
-          objectivePoints,
-          maxObjectivePoints,
-          maxEssayPoints,
-          totalMaxPoints,
-          essayGrades: {},
-          manualPoints: null,
-          finalPoints: null,
-          finalScore: null,
-          passed: null,
-          status: 'pending_review'
-        };
-      }
+      const grading = {
+        objectivePoints: finalPoints,
+        maxObjectivePoints: roundedMax,
+        totalMaxPoints: roundedMax,
+        finalPoints,
+        finalScore,
+        passed: finalScore >= passingScore,
+        status: 'graded',
+        correctCount,
+        wrongCount,
+        unansweredCount
+      };
 
       return {
         answers: sanitizedAnswers,
@@ -597,64 +554,55 @@
       };
     },
 
-    applyManualEssayGrades(attempt, essayGradesInput) {
-      const snapshots = attempt.questionSnapshots || [];
-      const essayQuestions = snapshots.filter((q) => q.type === 'essay');
-      const cleanedGrades = {};
+    getAttemptBreakdownStats(attempt) {
+      const grading = attempt?.grading || {};
+      const snapshots = attempt?.questionSnapshots || [];
+      const answers = attempt?.answers || {};
 
-      let manualPointsSum = 0;
-      let allGraded = true;
+      const hasPrecomputed =
+        typeof grading.correctCount === 'number' &&
+        typeof grading.wrongCount === 'number' &&
+        typeof grading.unansweredCount === 'number';
 
-      for (const q of essayQuestions) {
-        const entry = essayGradesInput[q.id];
-        const maxPts = Number(q.points) || 0;
-
-        if (!entry || entry.awardedPoints === '' || entry.awardedPoints === null || entry.awardedPoints === undefined) {
-          allGraded = false;
-          continue;
-        }
-
-        const pts = Number(entry.awardedPoints);
-        if (!Number.isFinite(pts) || pts < 0 || pts > maxPts) {
-          throw new Error(`Poin untuk soal essay "${q.question.slice(0, 40)}..." harus antara 0 dan ${maxPts}.`);
-        }
-
-        const roundedPts = Math.round(pts * 100) / 100;
-        cleanedGrades[q.id] = {
-          awardedPoints: roundedPts,
-          feedback: (entry.feedback || '').trim()
-        };
-        manualPointsSum += roundedPts;
-      }
-
-      const objectivePoints = Number(attempt.grading?.objectivePoints) || 0;
-      const totalMaxPoints = Number(attempt.grading?.totalMaxPoints) || 0;
-      const passingScore = Number(attempt.testSnapshot?.passingScore ?? 70);
-
-      if (allGraded) {
-        const manualPoints = Math.round(manualPointsSum * 100) / 100;
-        const finalPoints = Math.round((objectivePoints + manualPoints) * 100) / 100;
-        const finalScore = totalMaxPoints > 0 ? this.roundScore((finalPoints / totalMaxPoints) * 100) : 0;
+      if (hasPrecomputed && snapshots.every((q) => q.type === 'multiple_choice')) {
         return {
-          ...attempt.grading,
-          essayGrades: cleanedGrades,
-          manualPoints,
-          finalPoints,
-          finalScore,
-          passed: finalScore >= passingScore,
-          status: 'graded'
+          correctCount: grading.correctCount,
+          wrongCount: grading.wrongCount,
+          unansweredCount: grading.unansweredCount,
+          essayCount: 0
         };
       }
 
-      return {
-        ...attempt.grading,
-        essayGrades: cleanedGrades,
-        manualPoints: null,
-        finalPoints: null,
-        finalScore: null,
-        passed: null,
-        status: 'pending_review'
-      };
+      let correctCount = 0;
+      let wrongCount = 0;
+      let unansweredCount = 0;
+      let essayCount = 0;
+
+      for (const q of snapshots) {
+        const ans = answers[q.id];
+        if (q.type === 'multiple_choice') {
+          if (typeof ans === 'number' && Number.isInteger(ans) && ans >= 0 && ans <= 3) {
+            if (ans === q.correctAnswer) correctCount += 1;
+            else wrongCount += 1;
+          } else {
+            unansweredCount += 1;
+          }
+        } else if (q.type === 'true_false') {
+          if (typeof ans === 'boolean') {
+            if (ans === q.correctAnswer) correctCount += 1;
+            else wrongCount += 1;
+          } else {
+            unansweredCount += 1;
+          }
+        } else if (q.type === 'essay') {
+          essayCount += 1;
+          if (typeof ans !== 'string' || !ans.trim()) {
+            unansweredCount += 1;
+          }
+        }
+      }
+
+      return { correctCount, wrongCount, unansweredCount, essayCount };
     }
   };
 
@@ -878,34 +826,87 @@
       };
     },
 
+    getTestCompatibilityInfo(testId) {
+      const questions = this.getQuestionsByTest(testId);
+      const nonMcQuestions = questions.filter((q) => q.type !== 'multiple_choice');
+      const invalidMcQuestions = questions.filter(
+        (q) => q.type === 'multiple_choice' && !GradingService.validateQuestionPayload(q).valid
+      );
+      const needsAdjustment = nonMcQuestions.length > 0 || invalidMcQuestions.length > 0;
+      const hasQuestions = questions.length > 0;
+      const canTakeTest = hasQuestions && !needsAdjustment;
+
+      let reason = '';
+      if (nonMcQuestions.length > 0) {
+        reason = `Tes ini masih memiliki ${nonMcQuestions.length} soal format lama (Benar/Salah atau Essay) dan berstatus Perlu Penyesuaian.`;
+      } else if (invalidMcQuestions.length > 0) {
+        reason = `Tes ini memiliki ${invalidMcQuestions.length} soal pilihan ganda yang belum lengkap dan berstatus Perlu Penyesuaian.`;
+      } else if (!hasQuestions) {
+        reason = 'Tes ini belum memiliki soal.';
+      }
+
+      return {
+        questions,
+        nonMcQuestions,
+        invalidMcQuestions,
+        needsAdjustment,
+        hasQuestions,
+        canTakeTest,
+        reason
+      };
+    },
+
+    syncTestAdjustmentFlag(testId) {
+      const test = this.getTestById(testId);
+      if (!test) return;
+      const compat = this.getTestCompatibilityInfo(testId);
+      test.needsAdjustment = compat.needsAdjustment;
+    },
+
+    migrateStateV21() {
+      const meta = DataStore.state.meta || {};
+      if (meta.v21Migrated === true) return false;
+
+      // Migrasi satu kali V2 -> V2.1 tanpa menghapus atau mengubah riwayat, snapshot, nilai, atau soal lama
+      (DataStore.state.tests || []).forEach((test) => {
+        const compat = this.getTestCompatibilityInfo(test.id);
+        test.needsAdjustment = compat.needsAdjustment;
+        if (compat.needsAdjustment) {
+          test.legacyMixedTypes = true;
+        }
+      });
+
+      DataStore.state.meta = {
+        ...meta,
+        version: '2.1.0',
+        schemaVersion: '2.1.0',
+        v21Migrated: true,
+        v21MigratedAt: new Date().toISOString()
+      };
+      DataStore.persist();
+      return true;
+    },
+
     addQuestion(testId, payload) {
-      const check = GradingService.validateQuestionPayload(payload);
+      const normalizedPayload = { ...payload, type: 'multiple_choice' };
+      const check = GradingService.validateQuestionPayload(normalizedPayload);
       if (!check.valid) throw new Error(check.error);
 
       const current = this.getQuestionsByTest(testId);
       const base = {
         id: Utils.generateId('q'),
         testId,
-        type: payload.type,
-        question: payload.question.trim(),
-        points: Math.round(Number(payload.points) * 100) / 100,
+        type: 'multiple_choice',
+        question: normalizedPayload.question.trim(),
+        options: normalizedPayload.options.map((o) => String(o).trim()),
+        correctAnswer: Number(normalizedPayload.correctAnswer),
+        points: Math.round(Number(normalizedPayload.points) * 100) / 100,
+        explanation: (normalizedPayload.explanation || '').trim(),
         order: current.length + 1
       };
 
-      if (payload.type === 'multiple_choice') {
-        base.options = payload.options.map((o) => o.trim());
-        base.correctAnswer = Number(payload.correctAnswer);
-        base.explanation = (payload.explanation || '').trim();
-      } else if (payload.type === 'true_false') {
-        base.correctAnswer = Boolean(payload.correctAnswer);
-        base.explanation = (payload.explanation || '').trim();
-      } else {
-        base.modelAnswer = (payload.modelAnswer || '').trim();
-        base.rubric = (payload.rubric || '').trim();
-        base.instructions = (payload.instructions || '').trim();
-      }
-
       DataStore.state.questions.push(base);
+      this.syncTestAdjustmentFlag(testId);
       DataStore.persist();
       return base;
     },
@@ -913,33 +914,25 @@
     updateQuestion(questionId, payload) {
       const idx = DataStore.state.questions.findIndex((q) => q.id === questionId);
       if (idx === -1) throw new Error('Soal tidak ditemukan.');
-      const check = GradingService.validateQuestionPayload(payload);
+      const normalizedPayload = { ...payload, type: 'multiple_choice' };
+      const check = GradingService.validateQuestionPayload(normalizedPayload);
       if (!check.valid) throw new Error(check.error);
 
       const existing = DataStore.state.questions[idx];
       const updated = {
         id: existing.id,
         testId: existing.testId,
-        type: payload.type,
-        question: payload.question.trim(),
-        points: Math.round(Number(payload.points) * 100) / 100,
+        type: 'multiple_choice',
+        question: normalizedPayload.question.trim(),
+        options: normalizedPayload.options.map((o) => String(o).trim()),
+        correctAnswer: Number(normalizedPayload.correctAnswer),
+        points: Math.round(Number(normalizedPayload.points) * 100) / 100,
+        explanation: (normalizedPayload.explanation || '').trim(),
         order: existing.order
       };
 
-      if (payload.type === 'multiple_choice') {
-        updated.options = payload.options.map((o) => o.trim());
-        updated.correctAnswer = Number(payload.correctAnswer);
-        updated.explanation = (payload.explanation || '').trim();
-      } else if (payload.type === 'true_false') {
-        updated.correctAnswer = Boolean(payload.correctAnswer);
-        updated.explanation = (payload.explanation || '').trim();
-      } else {
-        updated.modelAnswer = (payload.modelAnswer || '').trim();
-        updated.rubric = (payload.rubric || '').trim();
-        updated.instructions = (payload.instructions || '').trim();
-      }
-
       DataStore.state.questions[idx] = updated;
+      this.syncTestAdjustmentFlag(existing.testId);
       DataStore.persist();
       return updated;
     },
@@ -952,6 +945,7 @@
       remaining.forEach((q, idx) => {
         q.order = idx + 1;
       });
+      this.syncTestAdjustmentFlag(target.testId);
       DataStore.persist();
     },
 
@@ -973,6 +967,18 @@
     isChapterCompleted(chapterId) {
       const ids = DataStore.state.learningProgress?.completedChapterIds || [];
       return ids.includes(chapterId);
+    },
+
+    markChapterCompleted(chapterId, shouldPersist = true) {
+      if (!chapterId) return;
+      if (!DataStore.state.learningProgress) {
+        DataStore.state.learningProgress = { completedChapterIds: [] };
+      }
+      const list = DataStore.state.learningProgress.completedChapterIds;
+      if (!list.includes(chapterId)) {
+        list.push(chapterId);
+        if (shouldPersist) DataStore.persist();
+      }
     },
 
     toggleChapterCompleted(chapterId) {
@@ -1002,6 +1008,12 @@
       return (DataStore.state.attempts || []).find((a) => a.testId === testId) || null;
     },
 
+    getAttemptsByTestId(testId) {
+      return (DataStore.state.attempts || [])
+        .filter((a) => a.testId === testId)
+        .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+    },
+
     getAttemptById(attemptId) {
       return (DataStore.state.attempts || []).find((a) => a.id === attemptId) || null;
     },
@@ -1024,9 +1036,13 @@
       const attempt = this.getAttemptByTestId(testId);
       if (attempt) {
         if (attempt.grading?.status === 'pending_review') {
-          return { key: 'pending_review', label: 'Menunggu Penilaian', badge: 'badge--warm', attempt };
+          return { key: 'pending_review', label: 'Menunggu Penilaian (Arsip V2)', badge: 'badge--warm', attempt };
         }
         return { key: 'graded', label: 'Selesai Dinilai', badge: 'badge--green', attempt };
+      }
+      const compat = this.getTestCompatibilityInfo(testId);
+      if (compat.needsAdjustment) {
+        return { key: 'needs_adjustment', label: 'Perlu Penyesuaian', badge: 'badge--warm', attempt: null };
       }
       const draft = this.getInProgress(testId);
       if (draft && Object.keys(draft.answers || {}).length > 0) {
@@ -1042,10 +1058,13 @@
       }
       const test = this.getTestById(testId);
       if (!test) throw new Error('Tes tidak ditemukan.');
-      const questions = this.getQuestionsByTest(testId);
-      if (!questions.length) throw new Error('Tes ini belum memiliki soal.');
 
-      const evalResult = GradingService.evaluateSubmission(test, questions, rawAnswers);
+      const compat = this.getTestCompatibilityInfo(testId);
+      if (!compat.canTakeTest) {
+        throw new Error(compat.reason || 'Tes ini belum siap dikerjakan.');
+      }
+
+      const evalResult = GradingService.evaluateSubmission(test, compat.questions, rawAnswers);
       const attempt = {
         id: Utils.generateId('attempt'),
         testId,
@@ -1058,6 +1077,9 @@
       if (DataStore.state.inProgress && DataStore.state.inProgress[testId]) {
         delete DataStore.state.inProgress[testId];
       }
+      if (test.type === 'post_test' && evalResult.grading.status === 'graded') {
+        this.markChapterCompleted(test.chapterId, false);
+      }
       DataStore.persist();
       return attempt;
     },
@@ -1068,15 +1090,6 @@
         delete DataStore.state.inProgress[testId];
       }
       DataStore.persist();
-    },
-
-    gradeAttemptEssays(attemptId, essayGradesInput) {
-      const attempt = this.getAttemptById(attemptId);
-      if (!attempt) throw new Error('Data pengerjaan tidak ditemukan.');
-      const updatedGrading = GradingService.applyManualEssayGrades(attempt, essayGradesInput);
-      attempt.grading = updatedGrading;
-      DataStore.persist();
-      return attempt;
     },
 
     getChapterComparison(chapterId) {
@@ -1170,8 +1183,12 @@
 
     renderSubjectsPage() {
       const subjects = LmsStore.getSubjects(false);
-      const totalPublishedChapters = subjects.reduce((acc, s) => acc + LmsStore.getChaptersBySubject(s.id, false).length, 0);
-      const completedCount = (DataStore.state.learningProgress?.completedChapterIds || []).length;
+      const publishedChapterIds = new Set(
+        subjects.flatMap((s) => LmsStore.getChaptersBySubject(s.id, false).map((c) => c.id))
+      );
+      const totalPublishedChapters = publishedChapterIds.size;
+      const completedCount = (DataStore.state.learningProgress?.completedChapterIds || [])
+        .filter((id) => publishedChapterIds.has(id)).length;
 
       return `
         ${PublicViews.renderHeader('#/pembelajaran')}
@@ -1375,8 +1392,10 @@
       }
 
       const totals = LmsStore.getTestTotals(test.id);
+      const compat = LmsStore.getTestCompatibilityInfo(test.id);
       const attempt = statusInfo?.attempt;
       let scoreLine = '';
+
       if (statusInfo?.key === 'graded' && attempt) {
         const passBadge = variant === 'post'
           ? `<span class="badge ${attempt.grading.passed ? 'badge--green' : 'badge--orange'}">${attempt.grading.passed ? 'Lulus' : 'Belum Lulus'}</span>`
@@ -1388,14 +1407,19 @@
           </div>
         `;
       } else if (statusInfo?.key === 'pending_review' && attempt) {
-        scoreLine = `<div class="form-hint">Poin objektif sementara: <strong>${attempt.grading.objectivePoints} / ${attempt.grading.maxObjectivePoints}</strong> (Essay menunggu penilaian pengajar)</div>`;
+        scoreLine = `<div class="form-hint">Arsip V2 (baca-saja) &bull; Poin objektif historis: <strong>${attempt.grading.objectivePoints ?? 0} / ${attempt.grading.maxObjectivePoints ?? 0}</strong></div>`;
       }
 
-      const actionBtn = totals.questionCount === 0
-        ? `<span class="form-hint">Belum ada soal pada tes ini.</span>`
-        : attempt
-          ? `<a href="#/tes/${Utils.escapeHtml(test.id)}/hasil" class="btn btn--outline btn--sm">${Utils.icon('bar-chart-2', 15)} Lihat Hasil Tes</a>`
-          : `<a href="#/tes/${Utils.escapeHtml(test.id)}" class="btn ${variant === 'pre' ? 'btn--green' : 'btn--primary'} btn--sm">${Utils.icon('play', 15)} ${statusInfo?.key === 'in_progress' ? 'Lanjutkan Tes' : `Kerjakan ${GradingService.testTypeLabel(test.type)}`}</a>`;
+      let actionBtn = '';
+      if (attempt) {
+        actionBtn = `<a href="#/tes/${Utils.escapeHtml(test.id)}/hasil" class="btn btn--outline btn--sm">${Utils.icon('bar-chart-2', 15)} ${statusInfo?.key === 'pending_review' ? 'Lihat Arsip Hasil' : 'Lihat Hasil Tes'}</a>`;
+      } else if (compat.needsAdjustment) {
+        actionBtn = `<div class="form-hint" style="color:var(--orange-800);"><strong>Perlu Penyesuaian:</strong> Tes ini masih mengandung soal non-pilihan-ganda dan belum dapat dikerjakan.</div>`;
+      } else if (totals.questionCount === 0) {
+        actionBtn = `<span class="form-hint">Belum ada soal pada tes ini.</span>`;
+      } else {
+        actionBtn = `<a href="#/tes/${Utils.escapeHtml(test.id)}" class="btn ${variant === 'pre' ? 'btn--green' : 'btn--primary'} btn--sm">${Utils.icon('play', 15)} ${statusInfo?.key === 'in_progress' ? 'Lanjutkan Tes' : `Kerjakan ${GradingService.testTypeLabel(test.type)}`}</a>`;
+      }
 
       return `
         <div class="test-summary-card test-summary-card--${variant}">
@@ -1465,7 +1489,7 @@
           <div>
             <strong style="font-size:0.9rem;color:var(--green-800);">Perbandingan Pre-Test &amp; Post-Test</strong>
             <p class="form-hint" style="margin-top:0.2rem;">
-              Selisih nilai final akan dihitung setelah kedua tes selesai dinilai (Pre-Test: <strong>${preStatusText}</strong>, Post-Test: <strong>${postStatusText}</strong>).
+              Selisih nilai final dalam poin akan ditampilkan setelah kedua tes selesai dinilai (Pre-Test: <strong>${preStatusText}</strong>, Post-Test: <strong>${postStatusText}</strong>).
             </p>
           </div>
         </div>
@@ -1498,16 +1522,18 @@
 
       const chapter = LmsStore.getChapterById(test.chapterId);
       const subject = chapter ? LmsStore.getSubjectById(chapter.subjectId) : null;
-      const questions = LmsStore.getQuestionsByTest(test.id);
+      const compat = LmsStore.getTestCompatibilityInfo(test.id);
+      const questions = compat.questions;
 
-      if (!questions.length) {
+      if (compat.needsAdjustment) {
         return `
           ${PublicViews.renderHeader('#/pembelajaran')}
           <main id="main-content" class="section">
             <div class="container">
               <div class="empty-state">
-                <h1 class="empty-state__title">${Utils.escapeHtml(test.title)}</h1>
-                <p class="empty-state__desc">Belum ada pertanyaan pada tes ini. Silakan tambahkan soal melalui Quiz Builder Admin.</p>
+                <div class="empty-state__icon">${Utils.icon('alert-triangle', 28)}</div>
+                <h1 class="empty-state__title">Tes Perlu Penyesuaian</h1>
+                <p class="empty-state__desc">${Utils.escapeHtml(compat.reason)} Admin perlu mengonversi atau mengganti soal lama menjadi Pilihan Ganda terlebih dahulu.</p>
                 <a href="#/pembelajaran/${Utils.escapeHtml(subject?.id || '')}/${Utils.escapeHtml(chapter?.id || '')}" class="btn btn--outline">Kembali ke Bab</a>
               </div>
             </div>
@@ -1516,8 +1542,21 @@
         `;
       }
 
-      const draft = LmsStore.getInProgress(test.id) || { answers: {}, currentIndex: 0 };
-      const currentIdx = Math.max(0, Math.min(questions.length - 1, Number(draft.currentIndex) || 0));
+      if (!questions.length) {
+        return `
+          ${PublicViews.renderHeader('#/pembelajaran')}
+          <main id="main-content" class="section">
+            <div class="container">
+              <div class="empty-state">
+                <h1 class="empty-state__title">${Utils.escapeHtml(test.title)}</h1>
+                <p class="empty-state__desc">Belum ada pertanyaan pilihan ganda pada tes ini. Silakan tambahkan soal melalui Quiz Builder Admin.</p>
+                <a href="#/pembelajaran/${Utils.escapeHtml(subject?.id || '')}/${Utils.escapeHtml(chapter?.id || '')}" class="btn btn--outline">Kembali ke Bab</a>
+              </div>
+            </div>
+          </main>
+          ${PublicViews.renderFooter()}
+        `;
+      }
 
       return `
         ${PublicViews.renderHeader('#/pembelajaran')}
@@ -1533,7 +1572,7 @@
                 </div>
                 <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
                   <span class="badge ${test.type === 'pre_test' ? 'badge--teal' : 'badge--orange'}">${GradingService.testTypeLabel(test.type)}</span>
-                  <span class="badge badge--neutral">${questions.length} Soal</span>
+                  <span class="badge badge--neutral">${questions.length} Soal Pilihan Ganda</span>
                 </div>
               </div>
               ${test.description ? `<p class="form-hint" style="margin-bottom:0.85rem;">${Utils.escapeHtml(test.description)}</p>` : ''}
@@ -1567,19 +1606,17 @@
       if (!root) return;
 
       const test = LmsStore.getTestById(testId);
-      const questions = LmsStore.getQuestionsByTest(testId);
-      if (!test || !questions.length) return;
+      const compat = LmsStore.getTestCompatibilityInfo(testId);
+      if (!test || !compat.canTakeTest) return;
 
+      const questions = compat.questions;
       const saved = LmsStore.getInProgress(testId) || { answers: {}, currentIndex: 0 };
       const answers = { ...(saved.answers || {}) };
       let currentIndex = Math.max(0, Math.min(questions.length - 1, Number(saved.currentIndex) || 0));
 
       const isQuestionAnswered = (q) => {
         const val = answers[q.id];
-        if (q.type === 'multiple_choice') return typeof val === 'number' && val >= 0 && val <= 3;
-        if (q.type === 'true_false') return typeof val === 'boolean';
-        if (q.type === 'essay') return typeof val === 'string' && val.trim().length > 0;
-        return false;
+        return typeof val === 'number' && Number.isInteger(val) && val >= 0 && val <= 3;
       };
 
       const renderRunnerStep = () => {
@@ -1600,50 +1637,20 @@
           `;
         }
 
-        let inputHtml = '';
-        if (q.type === 'multiple_choice') {
-          const letters = ['A', 'B', 'C', 'D'];
-          inputHtml = `
-            <div class="quiz-option-list" role="radiogroup" aria-label="Pilihan Jawaban">
-              ${(q.options || []).map((opt, idx) => {
-                const selected = answers[q.id] === idx;
-                return `
-                  <label class="quiz-option ${selected ? 'is-selected' : ''}">
-                    <input type="radio" name="q-radio-${Utils.escapeHtml(q.id)}" value="${idx}" ${selected ? 'checked' : ''}>
-                    <span><strong>${letters[idx]}.</strong> ${Utils.escapeHtml(opt)}</span>
-                  </label>
-                `;
-              }).join('')}
-            </div>
-          `;
-        } else if (q.type === 'true_false') {
-          const currentVal = answers[q.id];
-          inputHtml = `
-            <div class="quiz-option-list" role="radiogroup" aria-label="Pilihan Benar atau Salah">
-              <label class="quiz-option ${currentVal === true ? 'is-selected' : ''}">
-                <input type="radio" name="q-tf-${Utils.escapeHtml(q.id)}" value="true" ${currentVal === true ? 'checked' : ''}>
-                <span><strong>Benar</strong></span>
-              </label>
-              <label class="quiz-option ${currentVal === false ? 'is-selected' : ''}">
-                <input type="radio" name="q-tf-${Utils.escapeHtml(q.id)}" value="false" ${currentVal === false ? 'checked' : ''}>
-                <span><strong>Salah</strong></span>
-              </label>
-            </div>
-          `;
-        } else if (q.type === 'essay') {
-          const currentText = typeof answers[q.id] === 'string' ? answers[q.id] : '';
-          inputHtml = `
-            <div class="form-field" style="margin-top:1.1rem;">
-              ${q.instructions ? `<div class="alert-box alert-box--info" style="margin-bottom:0.5rem;">${Utils.icon('info', 16)}<div>${Utils.escapeHtml(q.instructions)}</div></div>` : ''}
-              <label class="form-label" for="quiz-essay-input">Jawaban Uraian Anda</label>
-              <textarea id="quiz-essay-input" class="textarea" rows="7" maxlength="${CONFIG.ESSAY_MAX_CHARS}" placeholder="Tuliskan jawaban uraian Anda secara jelas dan runtut...">${Utils.escapeHtml(currentText)}</textarea>
-              <div style="display:flex;justify-content:space-between;font-size:0.79rem;color:var(--text-muted);">
-                <span>Essay diperiksa secara manual oleh pengajar setelah pengiriman.</span>
-                <strong id="essay-char-counter">${currentText.length} / ${CONFIG.ESSAY_MAX_CHARS.toLocaleString('id-ID')} karakter</strong>
-              </div>
-            </div>
-          `;
-        }
+        const letters = ['A', 'B', 'C', 'D'];
+        const inputHtml = `
+          <div class="quiz-option-list" role="radiogroup" aria-label="Pilihan Jawaban">
+            ${(q.options || []).map((opt, idx) => {
+              const selected = answers[q.id] === idx;
+              return `
+                <label class="quiz-option ${selected ? 'is-selected' : ''}">
+                  <input type="radio" name="q-radio-${Utils.escapeHtml(q.id)}" value="${idx}" ${selected ? 'checked' : ''}>
+                  <span><strong>${letters[idx]}.</strong> ${Utils.escapeHtml(opt)}</span>
+                </label>
+              `;
+            }).join('')}
+          </div>
+        `;
 
         const slot = document.getElementById('quiz-question-slot');
         if (slot) {
@@ -1651,7 +1658,7 @@
             <div style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
               <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
                 <span class="badge badge--green">Nomor ${currentIndex + 1}</span>
-                <span class="badge ${GradingService.questionTypeBadgeClass(q.type)}">${GradingService.questionTypeLabel(q.type)}</span>
+                <span class="badge badge--teal">Pilihan Ganda</span>
               </div>
               <span class="badge badge--neutral">${q.points} Poin</span>
             </div>
@@ -1685,48 +1692,13 @@
           });
         }
 
-        // Bind answer inputs
-        if (q.type === 'multiple_choice') {
-          slot.querySelectorAll(`input[name="q-radio-${q.id}"]`).forEach((radio) => {
-            radio.addEventListener('change', (e) => {
-              answers[q.id] = Number(e.target.value);
-              LmsStore.saveInProgress(testId, answers, currentIndex);
-              renderRunnerStep();
-            });
-          });
-        } else if (q.type === 'true_false') {
-          slot.querySelectorAll(`input[name="q-tf-${q.id}"]`).forEach((radio) => {
-            radio.addEventListener('change', (e) => {
-              // Simpan nilai boolean murni
-              answers[q.id] = e.target.value === 'true';
-              LmsStore.saveInProgress(testId, answers, currentIndex);
-              renderRunnerStep();
-            });
-          });
-        } else if (q.type === 'essay') {
-          const ta = document.getElementById('quiz-essay-input');
-          const counter = document.getElementById('essay-char-counter');
-          ta?.addEventListener('input', (e) => {
-            const val = e.target.value.slice(0, CONFIG.ESSAY_MAX_CHARS);
-            if (e.target.value !== val) e.target.value = val;
-            answers[q.id] = val;
-            if (counter) {
-              counter.textContent = `${val.length.toLocaleString('id-ID')} / ${CONFIG.ESSAY_MAX_CHARS.toLocaleString('id-ID')} karakter`;
-            }
+        slot?.querySelectorAll(`input[name="q-radio-${q.id}"]`).forEach((radio) => {
+          radio.addEventListener('change', (e) => {
+            answers[q.id] = Number(e.target.value);
             LmsStore.saveInProgress(testId, answers, currentIndex);
-            // Update answered state on pill & progress bar without losing textarea focus
-            const answeredNow = questions.filter(isQuestionAnswered).length;
-            const pctNow = Math.round((answeredNow / questions.length) * 100);
-            const pill = pillsSlot?.querySelector(`[data-jump-q="${currentIndex}"]`);
-            if (pill) pill.classList.toggle('is-answered', val.trim().length > 0);
-            if (progEl) {
-              const strongEl = progEl.querySelector('strong');
-              const barEl = progEl.querySelector('.progress-fill');
-              if (strongEl) strongEl.textContent = `${answeredNow} / ${questions.length} terjawab (${pctNow}%)`;
-              if (barEl) barEl.style.width = `${pctNow}%`;
-            }
+            renderRunnerStep();
           });
-        }
+        });
 
         document.getElementById('quiz-prev-btn')?.addEventListener('click', () => {
           if (currentIndex > 0) {
@@ -1752,8 +1724,8 @@
       const handleConfirmSubmit = () => {
         const unansweredCount = questions.filter((q) => !isQuestionAnswered(q)).length;
         const msg = unansweredCount > 0
-          ? `Masih ada ${unansweredCount} soal yang belum dijawab. Apakah Anda yakin ingin mengirim jawaban? Pastikan seluruh jawaban telah diperiksa.`
-          : 'Apakah Anda yakin ingin mengirim jawaban? Pastikan seluruh jawaban telah diperiksa.';
+          ? `Masih ada ${unansweredCount} soal yang belum dijawab (soal kosong bernilai 0 poin). Apakah Anda yakin ingin mengirim jawaban?`
+          : 'Apakah Anda yakin ingin mengirim jawaban? Nilai akan langsung dihitung secara otomatis.';
 
         UI.Confirm.open({
           title: 'Kirim Jawaban Tes?',
@@ -1763,7 +1735,7 @@
           onConfirm: () => {
             try {
               LmsStore.submitTest(testId, answers);
-              UI.Toast.show('Jawaban tes berhasil dikirim.', 'success');
+              UI.Toast.show('Jawaban tes berhasil dikirim dan dinilai otomatis.', 'success');
               Router.navigate(`#/tes/${testId}/hasil`);
             } catch (err) {
               UI.Toast.show(err.message || 'Gagal mengirim jawaban.', 'error');
@@ -1799,9 +1771,14 @@
       const snapTest = attempt.testSnapshot || test || {};
       const chapter = LmsStore.getChapterById(snapTest.chapterId);
       const subject = chapter ? LmsStore.getSubjectById(chapter.subjectId) : null;
-      const grading = attempt.grading;
+      const grading = attempt.grading || {};
       const isGraded = grading.status === 'graded';
       const questions = attempt.questionSnapshots || [];
+      const breakdown = GradingService.getAttemptBreakdownStats(attempt);
+      const isLegacySnapshot = questions.some((q) => q.type !== 'multiple_choice');
+
+      const comp = chapter ? LmsStore.getChapterComparison(chapter.id) : null;
+      const subjProg = subject ? LmsStore.getSubjectProgress(subject.id) : null;
 
       const radius = 74;
       const circumference = 2 * Math.PI * radius;
@@ -1824,7 +1801,7 @@
 
             <!-- Ringkasan & Visualisasi Skor -->
             <div class="result-hero-card">
-              <div class="score-gauge" role="img" aria-label="${isGraded ? `Nilai akhir ${GradingService.formatScore(grading.finalScore)}` : 'Menunggu penilaian pengajar'}">
+              <div class="score-gauge" role="img" aria-label="${isGraded ? `Nilai akhir ${GradingService.formatScore(grading.finalScore)}` : 'Arsip V2 menunggu penilaian'}">
                 <svg viewBox="0 0 180 180">
                   <circle cx="90" cy="90" r="${radius}" fill="none" stroke="var(--bg-subtle)" stroke-width="14" />
                   <circle
@@ -1838,8 +1815,8 @@
                     <div class="score-gauge__value">${GradingService.formatScore(grading.finalScore)}</div>
                     <div class="score-gauge__label">Nilai Akhir</div>
                   ` : `
-                    <div style="color:var(--warm-orange-main);margin-bottom:0.2rem;">${Utils.icon('clock', 30)}</div>
-                    <div class="score-gauge__label" style="font-weight:600;color:var(--orange-800);padding-inline:0.8rem;">Menunggu Penilaian</div>
+                    <div style="color:var(--warm-orange-main);margin-bottom:0.2rem;">${Utils.icon('archive', 28)}</div>
+                    <div class="score-gauge__label" style="font-weight:600;color:var(--orange-800);padding-inline:0.8rem;">Arsip V2</div>
                   `}
                 </div>
               </div>
@@ -1847,7 +1824,7 @@
               <div>
                 <div style="display:flex;gap:0.45rem;flex-wrap:wrap;margin-bottom:0.6rem;">
                   <span class="badge ${snapTest.type === 'pre_test' ? 'badge--teal' : 'badge--orange'}">${GradingService.testTypeLabel(snapTest.type)}</span>
-                  <span class="badge ${isGraded ? 'badge--green' : 'badge--warm'}">${isGraded ? 'Selesai Dinilai' : 'Menunggu Penilaian'}</span>
+                  <span class="badge ${isGraded ? 'badge--green' : 'badge--warm'}">${isGraded ? 'Selesai Dinilai Otomatis' : 'Arsip V2 (Menunggu Penilaian)'}</span>
                   ${isGraded ? `<span class="badge ${grading.passed ? 'badge--green' : 'badge--orange'}">${grading.passed ? 'Lulus' : 'Belum Lulus'}</span>` : ''}
                 </div>
 
@@ -1858,43 +1835,77 @@
 
                 ${!isGraded ? `
                   <div class="alert-box alert-box--warn" style="margin-bottom:1rem;">
-                    ${Utils.icon('clock', 18)}
+                    ${Utils.icon('archive', 18)}
                     <div>
-                      Jawaban berhasil dikirim. Soal pilihan ganda dan benar/salah telah diperiksa otomatis. Jawaban essay masih menunggu penilaian pengajar.
+                      <strong>Arsip Riwayat V2 (Baca-Saja):</strong> Pengerjaan ini berasal dari versi V2 sebelum pembaruan Pilihan Ganda. Nilai dan status historis (Menunggu Penilaian) dipertahankan tanpa diubah secara otomatis.
                     </div>
                   </div>
                 ` : ''}
 
-                <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(145px,1fr));margin-bottom:0;">
+                <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(135px,1fr));margin-bottom:0;">
                   <div style="padding:0.75rem;border-radius:var(--radius-md);background:var(--bg-subtle);">
-                    <div class="form-hint">Jumlah Soal</div>
-                    <strong>${questions.length} Soal (${grading.totalMaxPoints} Poin)</strong>
+                    <div class="form-hint">Jawaban Benar</div>
+                    <strong style="color:var(--green-700);">${breakdown.correctCount} Soal</strong>
                   </div>
                   <div style="padding:0.75rem;border-radius:var(--radius-md);background:var(--bg-subtle);">
-                    <div class="form-hint">${isGraded ? 'Poin Objektif' : 'Skor Objektif Sementara'}</div>
-                    <strong>${grading.objectivePoints} / ${grading.maxObjectivePoints} Poin</strong>
+                    <div class="form-hint">Jawaban Salah</div>
+                    <strong style="color:var(--orange-800);">${breakdown.wrongCount} Soal</strong>
                   </div>
-                  ${grading.maxEssayPoints > 0 ? `
-                    <div style="padding:0.75rem;border-radius:var(--radius-md);background:var(--bg-subtle);">
-                      <div class="form-hint">Poin Essay</div>
-                      <strong>${isGraded ? `${grading.manualPoints} / ${grading.maxEssayPoints} Poin` : 'Menunggu Pengajar'}</strong>
-                    </div>
-                  ` : ''}
-                  ${isGraded ? `
-                    <div style="padding:0.75rem;border-radius:var(--radius-md);background:var(--green-50);">
-                      <div class="form-hint">Total &amp; KKM</div>
-                      <strong>${grading.finalPoints} / ${grading.totalMaxPoints} (KKM ${snapTest.passingScore})</strong>
-                    </div>
-                  ` : ''}
+                  <div style="padding:0.75rem;border-radius:var(--radius-md);background:var(--bg-subtle);">
+                    <div class="form-hint">Tidak Dijawab</div>
+                    <strong>${breakdown.unansweredCount} Soal</strong>
+                  </div>
+                  <div style="padding:0.75rem;border-radius:var(--radius-md);background:var(--green-50);">
+                    <div class="form-hint">${isGraded ? 'Poin &amp; KKM' : 'Poin Objektif'}</div>
+                    <strong>
+                      ${isGraded
+                        ? `${grading.finalPoints ?? grading.objectivePoints ?? 0} / ${grading.totalMaxPoints ?? 0} (KKM ${snapTest.passingScore ?? 70})`
+                        : `${grading.objectivePoints ?? 0} / ${grading.maxObjectivePoints ?? 0} Poin`}
+                    </strong>
+                  </div>
                 </div>
               </div>
             </div>
 
+            ${isGraded && snapTest.type === 'pre_test' && chapter ? `
+              <div class="panel" style="margin-bottom:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+                <div>
+                  <strong style="color:var(--green-800);">Pre-Test Selesai</strong>
+                  <p class="form-hint" style="margin-top:0.15rem;">Lanjutkan mempelajari video kajian dan dokumen materi pada bab ini, lalu kerjakan Post-Test.</p>
+                </div>
+                <a href="#/pembelajaran/${Utils.escapeHtml(subject?.id || '')}/${Utils.escapeHtml(chapter.id)}" class="btn btn--green">
+                  ${Utils.icon('play-circle', 16)} Lanjutkan ke Video &amp; Materi
+                </a>
+              </div>
+            ` : ''}
+
+            ${isGraded && snapTest.type === 'post_test' && chapter ? `
+              <div class="panel" style="margin-bottom:1.5rem;">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+                  <div style="flex:1;min-width:220px;">
+                    <strong style="color:var(--green-800);">Progres Pembelajaran Diperbarui</strong>
+                    <p class="form-hint" style="margin-top:0.15rem;">
+                      Bab "${Utils.escapeHtml(chapter.title)}" telah tercatat selesai pada progres belajar Anda (${subjProg ? `${subjProg.completed}/${subjProg.total} bab • ${subjProg.pct}%` : '100%'}).
+                    </p>
+                  </div>
+                  <a href="#/pembelajaran/${Utils.escapeHtml(subject?.id || '')}/${Utils.escapeHtml(chapter.id)}" class="btn btn--primary btn--sm">
+                    ${Utils.icon('book-open', 15)} Kembali ke Materi Bab
+                  </a>
+                </div>
+                ${comp && comp.bothGraded ? this.renderPrePostComparisonCard(comp) : ''}
+              </div>
+            ` : ''}
+
+            ${isGraded && snapTest.type === 'pre_test' && comp && comp.bothGraded ? `
+              <div style="margin-bottom:1.5rem;">
+                ${this.renderPrePostComparisonCard(comp)}
+              </div>
+            ` : ''}
+
             <!-- Rincian Jawaban Per Soal -->
             <div class="panel">
               <div class="panel__head">
-                <h2 class="panel__title">Rincian Jawaban</h2>
-                ${!isGraded ? `<a href="#/admin/penilaian/${Utils.escapeHtml(attempt.id)}" class="btn btn--outline btn--sm">${Utils.icon('clipboard-check', 15)} Nilai di Admin Demo</a>` : ''}
+                <h2 class="panel__title">Rincian Jawaban${isLegacySnapshot ? ' (Arsip Snapshot)' : ''}</h2>
               </div>
               <div style="display:flex;flex-direction:column;gap:0.9rem;">
                 ${questions.map((q, idx) => this.renderResultQuestionItem(q, idx, attempt)).join('')}
@@ -2007,7 +2018,7 @@
   };
 
   /* ------------------------------------------------------------------------
-     5. ADMIN LMS VIEWS (Mata Pelajaran, Bab, Quiz Builder & Penilaian Essay)
+     5. ADMIN LMS VIEWS (Mata Pelajaran, Bab & Quiz Builder Pilihan Ganda)
      ------------------------------------------------------------------------ */
   const LmsAdminViews = {
     activeBuilderTab: 'pre_test',
@@ -2018,7 +2029,7 @@
         <div class="admin-page-head">
           <div>
             <h1>Pembelajaran &amp; Quiz Builder</h1>
-            <p class="form-hint">Kelola mata pelajaran, bab materi, serta susun Pre-Test &amp; Post-Test campuran (Pilihan Ganda, Benar/Salah, Essay).</p>
+            <p class="form-hint">Kelola mata pelajaran, bab materi, serta susun Pre-Test &amp; Post-Test Pilihan Ganda dengan penilaian otomatis.</p>
           </div>
           <button type="button" class="btn btn--primary" id="btn-add-subject">
             ${Utils.icon('plus', 17)} Tambah Mata Pelajaran
@@ -2060,16 +2071,20 @@
                         const { preTest, postTest } = LmsStore.ensureChapterTests(ch.id, false);
                         const preTotals = LmsStore.getTestTotals(preTest.id);
                         const postTotals = LmsStore.getTestTotals(postTest.id);
+                        const preCompat = LmsStore.getTestCompatibilityInfo(preTest.id);
+                        const postCompat = LmsStore.getTestCompatibilityInfo(postTest.id);
+                        const chapterNeedsAdjustment = preCompat.needsAdjustment || postCompat.needsAdjustment;
                         return `
                           <div class="recent-item" style="flex-wrap:wrap;">
-                            <div class="recent-item__info" style="flex:1;min-width:240px;">
-                              <div class="recent-item__title">${Utils.escapeHtml(ch.title)}</div>
+                            <div class="recent-item__info" style="flex:1 1 200px;min-width:0;">
+                              <div class="recent-item__title" style="white-space:normal;">${Utils.escapeHtml(ch.title)}</div>
                               <div class="recent-item__meta">
                                 Pre-Test: ${preTotals.questionCount} soal (${preTotals.totalPoints} poin) &bull;
                                 Post-Test: ${postTotals.questionCount} soal (${postTotals.totalPoints} poin)
                               </div>
                             </div>
                             <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+                              ${chapterNeedsAdjustment ? '<span class="badge badge--warm">Perlu Penyesuaian</span>' : ''}
                               <span class="badge ${ch.status === 'published' ? 'badge--green' : 'badge--neutral'}">${ch.status === 'published' ? 'Terbit' : 'Draft'}</span>
                               <a href="#/admin/pembelajaran/${Utils.escapeHtml(ch.id)}" class="btn btn--primary btn--sm">
                                 ${Utils.icon('sliders', 15)} Editor Bab &amp; Quiz Builder
@@ -2275,6 +2290,10 @@
       const activeTest = this.activeBuilderTab === 'post_test' ? postTest : preTest;
       const questions = LmsStore.getQuestionsByTest(activeTest.id);
       const totals = LmsStore.getTestTotals(activeTest.id);
+      const preCompat = LmsStore.getTestCompatibilityInfo(preTest.id);
+      const postCompat = LmsStore.getTestCompatibilityInfo(postTest.id);
+      const activeCompat = activeTest.id === postTest.id ? postCompat : preCompat;
+      const archiveAttempts = LmsStore.getAttemptsByTestId(activeTest.id);
 
       const allDocs = DataStore.getDocuments();
       const allVideos = DataStore.getVideos();
@@ -2360,7 +2379,7 @@
           <div class="panel__head">
             <div>
               <h2 class="panel__title">Quiz Builder Bab</h2>
-              <p class="form-hint">Kelola pengaturan tes dan pertanyaan Pilihan Ganda, Benar/Salah, serta Essay secara terpisah untuk Pre-Test dan Post-Test.</p>
+              <p class="form-hint">Kelola pengaturan tes dan pertanyaan Pilihan Ganda (A–D) secara terpisah untuk Pre-Test dan Post-Test.</p>
             </div>
           </div>
 
@@ -2368,20 +2387,39 @@
             <button type="button" class="qb-tab ${activeTest.type === 'pre_test' ? 'is-active' : ''}" data-qb-tab="pre_test">
               ${Utils.icon('clipboard-list', 16)}
               <span>Pre-Test (${LmsStore.getTestTotals(preTest.id).questionCount} Soal)</span>
+              ${preCompat.needsAdjustment ? '<span class="badge badge--warm">Perlu Penyesuaian</span>' : ''}
             </button>
             <button type="button" class="qb-tab ${activeTest.type === 'post_test' ? 'is-active' : ''}" data-qb-tab="post_test">
               ${Utils.icon('award', 16)}
               <span>Post-Test (${LmsStore.getTestTotals(postTest.id).questionCount} Soal)</span>
+              ${postCompat.needsAdjustment ? '<span class="badge badge--warm">Perlu Penyesuaian</span>' : ''}
             </button>
           </div>
+
+          ${activeCompat.needsAdjustment ? `
+            <div class="alert-box alert-box--warn" style="margin-bottom:1.25rem;">
+              ${Utils.icon('alert-triangle', 19)}
+              <div>
+                <strong>Perlu Penyesuaian:</strong> ${Utils.escapeHtml(activeCompat.reason)} Pengerjaan baru oleh peserta dinonaktifkan hingga seluruh soal lama dikonversi ke Pilihan Ganda atau dihapus secara manual.
+              </div>
+            </div>
+          ` : ''}
 
           <!-- Pengaturan Tes -->
           <form id="test-settings-form" class="form-stack" style="padding:1.15rem;border-radius:var(--radius-md);background:var(--bg-subtle);border:1px solid var(--border-light);margin-bottom:1.5rem;">
             <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.75rem;">
-              <strong style="color:var(--green-800);">Pengaturan ${GradingService.testTypeLabel(activeTest.type)}</strong>
-              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+                <strong style="color:var(--green-800);">Pengaturan ${GradingService.testTypeLabel(activeTest.type)}</strong>
+                ${activeCompat.needsAdjustment ? '<span class="badge badge--warm">Perlu Penyesuaian</span>' : ''}
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
                 <span class="badge badge--green">${totals.questionCount} Soal</span>
                 <span class="badge badge--orange">Total ${totals.totalPoints} Poin</span>
+                ${archiveAttempts.length ? `
+                  <button type="button" class="btn btn--outline btn--sm" id="btn-view-test-archive" data-test-id="${Utils.escapeHtml(activeTest.id)}">
+                    ${Utils.icon('archive', 14)} Arsip Riwayat (${archiveAttempts.length})
+                  </button>
+                ` : ''}
               </div>
             </div>
 
@@ -2392,7 +2430,7 @@
               </div>
               <div class="form-row-2">
                 <div class="form-field">
-                  <label class="form-label" for="test-passing">KKM (0–100)</label>
+                  <label class="form-label" for="test-passing">Nilai Minimum Kelulusan (0–100)</label>
                   <input id="test-passing" class="input" type="number" min="0" max="100" value="${activeTest.passingScore}">
                 </div>
                 <div class="form-field">
@@ -2419,7 +2457,7 @@
           <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.75rem;margin-bottom:1rem;">
             <h3 style="font-size:1.02rem;">Daftar Pertanyaan (${questions.length})</h3>
             <button type="button" class="btn btn--primary btn--sm" id="btn-add-question" data-test-id="${Utils.escapeHtml(activeTest.id)}">
-              ${Utils.icon('plus', 16)} + Tambah Soal
+              ${Utils.icon('plus', 16)} Tambah Soal Pilihan Ganda
             </button>
           </div>
 
@@ -2431,7 +2469,7 @@
             <div class="empty-state">
               <div class="empty-state__icon">${Utils.icon('help-circle', 26)}</div>
               <h3 class="empty-state__title">Belum Ada Pertanyaan</h3>
-              <p class="empty-state__desc">Klik tombol "+ Tambah Soal" untuk menambahkan soal Pilihan Ganda, Benar/Salah, atau Essay.</p>
+              <p class="empty-state__desc">Klik tombol "Tambah Soal Pilihan Ganda" untuk menambahkan pertanyaan.</p>
             </div>
           `}
         </section>
@@ -2441,29 +2479,33 @@
     },
 
     renderBuilderQuestionCard(q, idx, total) {
+      const isLegacy = q.type !== 'multiple_choice';
       let detailSummary = '';
       if (q.type === 'multiple_choice') {
         const letters = ['A', 'B', 'C', 'D'];
         detailSummary = `Kunci: <strong>${letters[q.correctAnswer]}. ${Utils.escapeHtml(q.options?.[q.correctAnswer] || '')}</strong>`;
       } else if (q.type === 'true_false') {
-        detailSummary = `Kunci: <strong>${q.correctAnswer === true ? 'Benar' : 'Salah'}</strong>`;
+        detailSummary = `Soal V2 (Benar/Salah) &bull; Kunci lama: <strong>${q.correctAnswer === true ? 'Benar' : 'Salah'}</strong> &mdash; perlu dikonversi manual ke Pilihan Ganda.`;
       } else {
-        detailSummary = `Penilaian Manual &bull; Rubrik: ${Utils.escapeHtml((q.rubric || '').slice(0, 90))}`;
+        detailSummary = `Soal V2 (Essay) &bull; Rubrik lama: ${Utils.escapeHtml((q.rubric || '-').slice(0, 90))} &mdash; perlu dikonversi manual ke Pilihan Ganda.`;
       }
 
       return `
-        <article class="qb-question-card">
+        <article class="qb-question-card ${isLegacy ? 'qb-question-card--legacy' : ''}">
           <div class="qb-question-card__head">
             <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
               <span class="badge badge--neutral">#${idx + 1}</span>
               <span class="badge ${GradingService.questionTypeBadgeClass(q.type)}">${GradingService.questionTypeLabel(q.type)}</span>
+              ${isLegacy ? '<span class="badge badge--warm">Perlu Penyesuaian</span>' : ''}
               <span class="badge badge--green">${q.points} Poin</span>
             </div>
             <div class="table-actions">
               <button type="button" class="icon-btn" data-move-q="up" data-q-id="${Utils.escapeHtml(q.id)}" ${idx === 0 ? 'disabled' : ''} title="Naikkan urutan" aria-label="Naikkan urutan">${Utils.icon('arrow-up', 15)}</button>
               <button type="button" class="icon-btn" data-move-q="down" data-q-id="${Utils.escapeHtml(q.id)}" ${idx === total - 1 ? 'disabled' : ''} title="Turunkan urutan" aria-label="Turunkan urutan">${Utils.icon('arrow-down', 15)}</button>
               <button type="button" class="icon-btn" data-preview-q="${Utils.escapeHtml(q.id)}" title="Preview Soal" aria-label="Preview soal">${Utils.icon('eye', 15)}</button>
-              <button type="button" class="icon-btn" data-edit-q="${Utils.escapeHtml(q.id)}" title="Edit Soal" aria-label="Edit soal">${Utils.icon('pencil', 15)}</button>
+              ${isLegacy
+                ? `<button type="button" class="btn btn--primary btn--sm" data-edit-q="${Utils.escapeHtml(q.id)}" title="Konversi ke Pilihan Ganda">${Utils.icon('refresh-cw', 14)} Konversi ke PG</button>`
+                : `<button type="button" class="icon-btn" data-edit-q="${Utils.escapeHtml(q.id)}" title="Edit Soal" aria-label="Edit soal">${Utils.icon('pencil', 15)}</button>`}
               <button type="button" class="icon-btn icon-btn--danger" data-delete-q="${Utils.escapeHtml(q.id)}" title="Hapus Soal" aria-label="Hapus soal">${Utils.icon('trash-2', 15)}</button>
             </div>
           </div>
@@ -2522,8 +2564,12 @@
         }
       });
 
+      document.getElementById('btn-view-test-archive')?.addEventListener('click', (e) => {
+        this.openAttemptArchiveModal(e.currentTarget.dataset.testId);
+      });
+
       document.getElementById('btn-add-question')?.addEventListener('click', () => {
-        this.openQuestionTypeSelector(activeTest.id);
+        this.openQuestionFormModal(activeTest.id, null);
       });
 
       document.querySelectorAll('[data-move-q]').forEach((btn) => {
@@ -2540,7 +2586,7 @@
       document.querySelectorAll('[data-edit-q]').forEach((btn) => {
         btn.addEventListener('click', () => {
           const q = LmsStore.getQuestionById(btn.dataset.editQ);
-          if (q) this.openQuestionFormModal(q.testId, q.type, q);
+          if (q) this.openQuestionFormModal(q.testId, q);
         });
       });
 
@@ -2563,225 +2609,128 @@
       });
     },
 
-    openQuestionTypeSelector(testId) {
-      UI.Modal.open({
-        title: 'Pilih Jenis Soal',
-        size: 'md',
-        bodyHtml: `
-          <p class="form-hint" style="margin-bottom:1rem;">Pilih tipe pertanyaan yang ingin ditambahkan ke dalam tes:</p>
-          <div class="qtype-cards">
-            <button type="button" class="qtype-card" data-pick-qtype="multiple_choice">
-              <div class="qtype-card__icon" style="background:var(--teal-light);color:var(--teal-main);">
-                ${Utils.icon('list-checks', 22)}
-              </div>
-              <strong style="color:var(--green-800);">Pilihan Ganda</strong>
-              <span class="form-hint">4 opsi (A–D) dengan 1 jawaban benar dan penilaian otomatis.</span>
-            </button>
-            <button type="button" class="qtype-card" data-pick-qtype="true_false">
-              <div class="qtype-card__icon" style="background:var(--purple-light);color:var(--purple-main);">
-                ${Utils.icon('toggle-left', 22)}
-              </div>
-              <strong style="color:var(--green-800);">Benar / Salah</strong>
-              <span class="form-hint">Pernyataan dengan pilihan Benar atau Salah (boolean) dan penilaian otomatis.</span>
-            </button>
-            <button type="button" class="qtype-card" data-pick-qtype="essay">
-              <div class="qtype-card__icon" style="background:var(--orange-50);color:var(--orange-800);">
-                ${Utils.icon('file-pen-line', 22)}
-              </div>
-              <strong style="color:var(--green-800);">Essay</strong>
-              <span class="form-hint">Jawaban uraian hingga 5.000 karakter dengan rubrik &amp; penilaian manual pengajar.</span>
-            </button>
-          </div>
-        `,
-        footerHtml: `<button type="button" class="btn btn--outline" data-modal-close>Batal</button>`
-      });
-
-      document.querySelectorAll('[data-pick-qtype]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          this.openQuestionFormModal(testId, btn.dataset.pickQtype, null);
-        });
-      });
-    },
-
-    openQuestionFormModal(testId, initialType, existingQuestion = null) {
-      let currentType = initialType;
+    openQuestionFormModal(testId, existingQuestion = null) {
       const isEdit = Boolean(existingQuestion);
+      const isLegacyConversion = Boolean(existingQuestion && existingQuestion.type !== 'multiple_choice');
+      const opts = existingQuestion?.type === 'multiple_choice'
+        ? (existingQuestion.options || ['', '', '', ''])
+        : ['', '', '', ''];
+      const hasValidMcCorrect =
+        existingQuestion?.type === 'multiple_choice' &&
+        typeof existingQuestion.correctAnswer === 'number' &&
+        existingQuestion.correctAnswer >= 0 &&
+        existingQuestion.correctAnswer <= 3;
+      const selectedCorrect = hasValidMcCorrect ? String(existingQuestion.correctAnswer) : '';
 
-      const renderFormFieldsForType = (type, vals = {}) => {
-        if (type === 'multiple_choice') {
-          const opts = vals.options || ['', '', '', ''];
-          const correct = typeof vals.correctAnswer === 'number' ? vals.correctAnswer : 0;
-          return `
-            <div class="form-row-2">
-              <div class="form-field">
-                <label class="form-label" for="q-opt-0">Pilihan A <span>*</span></label>
-                <input id="q-opt-0" class="input" type="text" required value="${Utils.escapeHtml(opts[0] || '')}">
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="q-opt-1">Pilihan B <span>*</span></label>
-                <input id="q-opt-1" class="input" type="text" required value="${Utils.escapeHtml(opts[1] || '')}">
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="q-opt-2">Pilihan C <span>*</span></label>
-                <input id="q-opt-2" class="input" type="text" required value="${Utils.escapeHtml(opts[2] || '')}">
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="q-opt-3">Pilihan D <span>*</span></label>
-                <input id="q-opt-3" class="input" type="text" required value="${Utils.escapeHtml(opts[3] || '')}">
-              </div>
+      let legacyRefHtml = '';
+      if (isLegacyConversion) {
+        const refBody = existingQuestion.type === 'true_false'
+          ? `Kunci lama (Benar/Salah): <strong>${existingQuestion.correctAnswer === true ? 'Benar' : 'Salah'}</strong>`
+          : `Pedoman jawaban lama: ${Utils.escapeHtml(existingQuestion.modelAnswer || '-')}<br>Rubrik lama: ${Utils.escapeHtml(existingQuestion.rubric || '-')}`;
+        legacyRefHtml = `
+          <div class="alert-box alert-box--warn">
+            ${Utils.icon('info', 18)}
+            <div>
+              <strong>Konversi Manual dari ${GradingService.questionTypeLabel(existingQuestion.type)}:</strong><br>
+              ${refBody}
             </div>
-            <div class="form-field">
-              <label class="form-label" for="q-mc-correct">Jawaban Benar <span>*</span></label>
-              <select id="q-mc-correct" class="select">
-                <option value="0" ${correct === 0 ? 'selected' : ''}>Pilihan A</option>
-                <option value="1" ${correct === 1 ? 'selected' : ''}>Pilihan B</option>
-                <option value="2" ${correct === 2 ? 'selected' : ''}>Pilihan C</option>
-                <option value="3" ${correct === 3 ? 'selected' : ''}>Pilihan D</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="q-explanation">Penjelasan Jawaban (Opsional)</label>
-              <textarea id="q-explanation" class="textarea" rows="2">${Utils.escapeHtml(vals.explanation || '')}</textarea>
-            </div>
-          `;
-        }
-
-        if (type === 'true_false') {
-          const isTrue = vals.correctAnswer === true;
-          return `
-            <div class="form-field">
-              <label class="form-label">Jawaban Benar <span>*</span></label>
-              <div style="display:flex;gap:1.25rem;padding:0.5rem 0;">
-                <label style="display:flex;align-items:center;gap:0.45rem;cursor:pointer;">
-                  <input type="radio" name="q-tf-correct" value="true" ${isTrue ? 'checked' : ''}>
-                  <span>Benar</span>
-                </label>
-                <label style="display:flex;align-items:center;gap:0.45rem;cursor:pointer;">
-                  <input type="radio" name="q-tf-correct" value="false" ${!isTrue ? 'checked' : ''}>
-                  <span>Salah</span>
-                </label>
-              </div>
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="q-explanation">Penjelasan Jawaban (Opsional)</label>
-              <textarea id="q-explanation" class="textarea" rows="2">${Utils.escapeHtml(vals.explanation || '')}</textarea>
-            </div>
-          `;
-        }
-
-        return `
-          <div class="form-field">
-            <label class="form-label" for="q-model-answer">Contoh / Pedoman Jawaban Pengajar <span>*</span></label>
-            <textarea id="q-model-answer" class="textarea" rows="3" required>${Utils.escapeHtml(vals.modelAnswer || '')}</textarea>
-          </div>
-          <div class="form-field">
-            <label class="form-label" for="q-rubric">Rubrik Penilaian <span>*</span></label>
-            <textarea id="q-rubric" class="textarea" rows="2" required placeholder="Contoh: Ketepatan konsep (10 poin), kejelasan uraian (10 poin).">${Utils.escapeHtml(vals.rubric || '')}</textarea>
-          </div>
-          <div class="form-field">
-            <label class="form-label" for="q-instructions">Petunjuk Pengerjaan (Opsional)</label>
-            <input id="q-instructions" class="input" type="text" value="${Utils.escapeHtml(vals.instructions || '')}" placeholder="Contoh: Jawab dalam 2–4 kalimat yang jelas.">
           </div>
         `;
-      };
+      }
+
+      const modalTitle = isLegacyConversion
+        ? 'Konversi Soal ke Pilihan Ganda'
+        : isEdit
+          ? 'Edit Soal Pilihan Ganda'
+          : 'Tambah Soal Pilihan Ganda';
 
       UI.Modal.open({
-        title: isEdit ? 'Edit Soal' : `Tambah Soal (${GradingService.questionTypeLabel(currentType)})`,
+        title: modalTitle,
         size: 'lg',
         bodyHtml: `
           <form id="question-editor-form" class="form-stack" novalidate>
+            ${legacyRefHtml}
+
+            <div class="form-field">
+              <label class="form-label" for="q-text">Teks Pertanyaan <span>*</span></label>
+              <textarea id="q-text" class="textarea" rows="3" required placeholder="Tuliskan pertanyaan pilihan ganda...">${Utils.escapeHtml(existingQuestion?.question || '')}</textarea>
+            </div>
+
             <div class="form-row-2">
               <div class="form-field">
-                <label class="form-label" for="q-type-select">Jenis Soal</label>
-                <select id="q-type-select" class="select">
-                  <option value="multiple_choice" ${currentType === 'multiple_choice' ? 'selected' : ''}>Pilihan Ganda</option>
-                  <option value="true_false" ${currentType === 'true_false' ? 'selected' : ''}>Benar / Salah</option>
-                  <option value="essay" ${currentType === 'essay' ? 'selected' : ''}>Essay</option>
+                <label class="form-label" for="q-opt-0">Pilihan A <span>*</span></label>
+                <input id="q-opt-0" class="input" type="text" required value="${Utils.escapeHtml(opts[0] || '')}" placeholder="Isi pilihan A...">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="q-opt-1">Pilihan B <span>*</span></label>
+                <input id="q-opt-1" class="input" type="text" required value="${Utils.escapeHtml(opts[1] || '')}" placeholder="Isi pilihan B...">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="q-opt-2">Pilihan C <span>*</span></label>
+                <input id="q-opt-2" class="input" type="text" required value="${Utils.escapeHtml(opts[2] || '')}" placeholder="Isi pilihan C...">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="q-opt-3">Pilihan D <span>*</span></label>
+                <input id="q-opt-3" class="input" type="text" required value="${Utils.escapeHtml(opts[3] || '')}" placeholder="Isi pilihan D...">
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-field">
+                <label class="form-label" for="q-mc-correct">Jawaban Benar <span>*</span></label>
+                <select id="q-mc-correct" class="select" required>
+                  <option value="" ${selectedCorrect === '' ? 'selected' : ''}>-- Pilih Jawaban Benar --</option>
+                  <option value="0" ${selectedCorrect === '0' ? 'selected' : ''}>Pilihan A</option>
+                  <option value="1" ${selectedCorrect === '1' ? 'selected' : ''}>Pilihan B</option>
+                  <option value="2" ${selectedCorrect === '2' ? 'selected' : ''}>Pilihan C</option>
+                  <option value="3" ${selectedCorrect === '3' ? 'selected' : ''}>Pilihan D</option>
                 </select>
               </div>
               <div class="form-field">
                 <label class="form-label" for="q-points">Bobot Poin <span>*</span></label>
-                <input id="q-points" class="input" type="number" min="1" step="0.5" required value="${existingQuestion?.points ?? (currentType === 'essay' ? 20 : currentType === 'true_false' ? 5 : 10)}">
+                <input id="q-points" class="input" type="number" min="0.5" step="any" required value="${existingQuestion?.points ?? 10}">
               </div>
             </div>
 
             <div class="form-field">
-              <label class="form-label" for="q-text">${currentType === 'true_false' ? 'Pernyataan' : 'Teks Pertanyaan'} <span>*</span></label>
-              <textarea id="q-text" class="textarea" rows="3" required>${Utils.escapeHtml(existingQuestion?.question || '')}</textarea>
+              <label class="form-label" for="q-explanation">Penjelasan Jawaban (Opsional)</label>
+              <textarea id="q-explanation" class="textarea" rows="2" placeholder="Penjelasan atau pembahasan singkat jawaban benar...">${Utils.escapeHtml(existingQuestion?.explanation || '')}</textarea>
             </div>
 
-            <div id="q-type-specific-fields" class="form-stack">
-              ${renderFormFieldsForType(currentType, existingQuestion || {})}
-            </div>
             <div id="q-form-error" class="form-error" style="display:none;"></div>
           </form>
         `,
         footerHtml: `
           <button type="button" class="btn btn--outline" data-modal-close>Batal</button>
           <button type="submit" form="question-editor-form" class="btn btn--primary">
-            ${Utils.icon('save', 16)} ${isEdit ? 'Simpan Perubahan' : 'Simpan Soal'}
+            ${Utils.icon('save', 16)} ${isLegacyConversion ? 'Simpan sebagai Pilihan Ganda' : isEdit ? 'Simpan Perubahan' : 'Simpan Soal'}
           </button>
         `
-      });
-
-      const typeSelect = document.getElementById('q-type-select');
-      const specificContainer = document.getElementById('q-type-specific-fields');
-
-      typeSelect?.addEventListener('change', (e) => {
-        const nextType = e.target.value;
-        if (nextType === currentType) return;
-
-        // Kembalikan sementara hingga pengguna mengonfirmasi perubahan jenis soal
-        typeSelect.value = currentType;
-
-        UI.Confirm.open({
-          title: 'Ubah Jenis Soal?',
-          message: 'Mengubah jenis soal akan mengatur ulang konfigurasi jawaban sebelumnya karena format jawaban berbeda. Lanjutkan?',
-          confirmLabel: 'Ya, Ubah Jenis Soal',
-          danger: false,
-          onConfirm: () => {
-            currentType = nextType;
-            typeSelect.value = nextType;
-            const qLabel = document.querySelector('label[for="q-text"]');
-            if (qLabel) {
-              qLabel.innerHTML = `${currentType === 'true_false' ? 'Pernyataan' : 'Teks Pertanyaan'} <span>*</span>`;
-            }
-            specificContainer.innerHTML = renderFormFieldsForType(currentType, {});
-            UI.refreshIcons();
-          }
-        });
       });
 
       document.getElementById('question-editor-form')?.addEventListener('submit', (e) => {
         e.preventDefault();
         const errBox = document.getElementById('q-form-error');
+        const rawCorrectVal = document.getElementById('q-mc-correct').value;
         const payload = {
-          type: currentType,
+          type: 'multiple_choice',
           question: document.getElementById('q-text').value,
-          points: document.getElementById('q-points').value
+          options: [0, 1, 2, 3].map((i) => document.getElementById(`q-opt-${i}`).value),
+          correctAnswer: rawCorrectVal === '' ? null : Number(rawCorrectVal),
+          points: document.getElementById('q-points').value,
+          explanation: document.getElementById('q-explanation').value
         };
-
-        if (currentType === 'multiple_choice') {
-          payload.options = [0, 1, 2, 3].map((i) => document.getElementById(`q-opt-${i}`).value);
-          payload.correctAnswer = Number(document.getElementById('q-mc-correct').value);
-          payload.explanation = document.getElementById('q-explanation').value;
-        } else if (currentType === 'true_false') {
-          const checked = document.querySelector('input[name="q-tf-correct"]:checked');
-          payload.correctAnswer = checked ? checked.value === 'true' : null;
-          payload.explanation = document.getElementById('q-explanation').value;
-        } else {
-          payload.modelAnswer = document.getElementById('q-model-answer').value;
-          payload.rubric = document.getElementById('q-rubric').value;
-          payload.instructions = document.getElementById('q-instructions').value;
-        }
 
         try {
           if (isEdit) {
             LmsStore.updateQuestion(existingQuestion.id, payload);
-            UI.Toast.show('Soal berhasil diperbarui.', 'success');
+            UI.Toast.show(
+              isLegacyConversion ? 'Soal berhasil dikonversi ke Pilihan Ganda.' : 'Soal berhasil diperbarui.',
+              'success'
+            );
           } else {
             LmsStore.addQuestion(testId, payload);
-            UI.Toast.show('Soal baru berhasil ditambahkan.', 'success');
+            UI.Toast.show('Soal pilihan ganda baru berhasil ditambahkan.', 'success');
           }
           UI.Modal.close();
           Router.renderCurrent();
@@ -2789,6 +2738,54 @@
           errBox.textContent = err.message;
           errBox.style.display = 'block';
         }
+      });
+    },
+
+    openAttemptArchiveModal(testId) {
+      const test = LmsStore.getTestById(testId);
+      const attempts = LmsStore.getAttemptsByTestId(testId);
+      UI.Modal.open({
+        title: `Arsip Riwayat Pengerjaan (Baca-Saja)`,
+        size: 'lg',
+        bodyHtml: `
+          <p class="form-hint" style="margin-bottom:1rem;">
+            Menampilkan riwayat pengerjaan untuk <strong>${Utils.escapeHtml(test?.title || '')}</strong>. Nilai dan status historis (termasuk arsip V2) dipertahankan secara baca-saja.
+          </p>
+          ${attempts.length ? `
+            <div style="display:flex;flex-direction:column;gap:0.85rem;">
+              ${attempts.map((att) => {
+                const isGraded = att.grading?.status === 'graded';
+                const snapQs = att.questionSnapshots || [];
+                const hasLegacy = snapQs.some((q) => q.type !== 'multiple_choice');
+                return `
+                  <div class="qb-question-card">
+                    <div class="qb-question-card__head">
+                      <div>
+                        <strong>${Utils.escapeHtml(att.participantId || CONFIG.PARTICIPANT_ID)}</strong>
+                        <span class="form-hint"> &bull; ${Utils.formatDate(att.submittedAt)}</span>
+                      </div>
+                      <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
+                        ${hasLegacy ? '<span class="badge badge--neutral">Arsip V2</span>' : ''}
+                        <span class="badge ${isGraded ? 'badge--green' : 'badge--warm'}">
+                          ${isGraded ? `Nilai: ${GradingService.formatScore(att.grading.finalScore)} / 100` : 'Menunggu Penilaian (Historis)'}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="qb-question-card__body">
+                      <div>${snapQs.length} soal snapshot &bull; Poin objektif: ${att.grading?.objectivePoints ?? 0} / ${att.grading?.maxObjectivePoints ?? 0}</div>
+                      <div style="margin-top:0.5rem;">
+                        <a href="#/tes/${Utils.escapeHtml(att.testId)}/hasil" class="btn btn--outline btn--sm" data-modal-close>
+                          ${Utils.icon('eye', 14)} Buka Halaman Hasil
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          ` : '<p class="form-hint">Belum ada riwayat pengerjaan untuk tes ini.</p>'}
+        `,
+        footerHtml: `<button type="button" class="btn btn--outline" data-modal-close>Tutup</button>`
       });
     },
 
@@ -2809,6 +2806,7 @@
               </div>
             `).join('')}
           </div>
+          ${q.explanation ? `<div class="alert-box alert-box--info" style="margin-top:0.9rem;">${Utils.icon('info', 16)}<div><strong>Pembahasan:</strong> ${Utils.escapeHtml(q.explanation)}</div></div>` : ''}
         `;
       } else if (q.type === 'true_false') {
         bodyPreview = `
@@ -2826,8 +2824,8 @@
       } else {
         bodyPreview = `
           <div class="form-stack" style="margin-top:0.9rem;">
-            <div class="essay-answer-box"><strong>Pedoman Jawaban:</strong><br>${Utils.escapeHtml(q.modelAnswer || '')}</div>
-            <div class="essay-answer-box"><strong>Rubrik:</strong><br>${Utils.escapeHtml(q.rubric || '')}</div>
+            <div class="essay-answer-box"><strong>Pedoman Jawaban (Arsip V2):</strong><br>${Utils.escapeHtml(q.modelAnswer || '')}</div>
+            <div class="essay-answer-box"><strong>Rubrik (Arsip V2):</strong><br>${Utils.escapeHtml(q.rubric || '')}</div>
           </div>
         `;
       }
@@ -2836,7 +2834,7 @@
         title: `Preview Soal (${GradingService.questionTypeLabel(q.type)})`,
         size: 'md',
         bodyHtml: `
-          <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem;">
+          <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem;flex-wrap:wrap;">
             <span class="badge ${GradingService.questionTypeBadgeClass(q.type)}">${GradingService.questionTypeLabel(q.type)}</span>
             <span class="badge badge--green">${q.points} Poin</span>
           </div>
@@ -2844,291 +2842,6 @@
           ${bodyPreview}
         `,
         footerHtml: `<button type="button" class="btn btn--outline" data-modal-close>Tutup</button>`
-      });
-    },
-
-    /* ---------------- PENILAIAN ESSAY MANUAL ---------------- */
-    gradingFilterStatus: 'all',
-
-    renderEssayGradingList() {
-      const allAttempts = [...(DataStore.state.attempts || [])]
-        .filter((a) => (a.questionSnapshots || []).some((q) => q.type === 'essay'))
-        .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
-
-      const filtered = allAttempts.filter((a) => {
-        if (this.gradingFilterStatus === 'all') return true;
-        return a.grading?.status === this.gradingFilterStatus;
-      });
-
-      const body = `
-        <div class="admin-page-head">
-          <div>
-            <h1>Penilaian Essay Pengajar</h1>
-            <p class="form-hint">Periksa jawaban uraian peserta secara manual, berikan poin sesuai rubrik, dan tambahkan umpan balik.</p>
-          </div>
-        </div>
-
-        <div class="panel">
-          <div class="toolbar" style="margin-bottom:1.25rem;">
-            <div class="filter-pills">
-              <button type="button" class="filter-pill ${this.gradingFilterStatus === 'all' ? 'is-active' : ''}" data-grade-filter="all">Semua (${allAttempts.length})</button>
-              <button type="button" class="filter-pill ${this.gradingFilterStatus === 'pending_review' ? 'is-active' : ''}" data-grade-filter="pending_review">Menunggu Penilaian</button>
-              <button type="button" class="filter-pill ${this.gradingFilterStatus === 'graded' ? 'is-active' : ''}" data-grade-filter="graded">Selesai Dinilai</button>
-            </div>
-          </div>
-
-          ${filtered.length ? `
-            <div class="table-wrap">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>ID Peserta Demo</th>
-                    <th>Mata Pelajaran &amp; Bab</th>
-                    <th>Jenis Tes</th>
-                    <th>Tanggal Pengerjaan</th>
-                    <th>Essay Belum Diperiksa</th>
-                    <th>Status Penilaian</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${filtered.map((att) => {
-                    const testSnap = att.testSnapshot || LmsStore.getTestById(att.testId) || {};
-                    const chap = LmsStore.getChapterById(testSnap.chapterId);
-                    const subj = chap ? LmsStore.getSubjectById(chap.subjectId) : null;
-                    const essayQs = (att.questionSnapshots || []).filter((q) => q.type === 'essay');
-                    const grades = att.grading?.essayGrades || {};
-                    const ungradedCount = essayQs.filter((q) => typeof grades[q.id]?.awardedPoints !== 'number').length;
-                    const isPending = att.grading?.status === 'pending_review';
-
-                    return `
-                      <tr>
-                        <td>
-                          <strong>${CONFIG.PARTICIPANT_LABEL}</strong>
-                          <div class="form-hint">${Utils.escapeHtml(att.participantId)}</div>
-                        </td>
-                        <td>
-                          <div style="font-weight:600;color:var(--green-800);">${Utils.escapeHtml(subj?.title || '-')}</div>
-                          <div class="form-hint">${Utils.escapeHtml(chap?.title || '-')}</div>
-                        </td>
-                        <td><span class="badge ${testSnap.type === 'pre_test' ? 'badge--teal' : 'badge--orange'}">${GradingService.testTypeLabel(testSnap.type)}</span></td>
-                        <td>${Utils.formatDate(att.submittedAt)}</td>
-                        <td>
-                          ${ungradedCount > 0
-                            ? `<span class="badge badge--warm">${ungradedCount} dari ${essayQs.length} soal</span>`
-                            : `<span class="badge badge--green">0 (Semua diperiksa)</span>`}
-                        </td>
-                        <td>
-                          <span class="badge ${isPending ? 'badge--warm' : 'badge--green'}">
-                            ${isPending ? 'Menunggu Penilaian' : `Selesai Dinilai (${GradingService.formatScore(att.grading.finalScore)})`}
-                          </span>
-                        </td>
-                        <td>
-                          <a href="#/admin/penilaian/${Utils.escapeHtml(att.id)}" class="btn btn--primary btn--sm">
-                            ${Utils.icon('clipboard-check', 15)} Periksa Jawaban
-                          </a>
-                        </td>
-                      </tr>
-                    `;
-                  }).join('')}
-                </tbody>
-              </table>
-            </div>
-          ` : `
-            <div class="empty-state">
-              <div class="empty-state__icon">${Utils.icon('clipboard-check', 26)}</div>
-              <h2 class="empty-state__title">Tidak Ada Pengerjaan Essay</h2>
-              <p class="empty-state__desc">Belum ada jawaban essay pada filter yang dipilih.</p>
-            </div>
-          `}
-        </div>
-      `;
-
-      return AdminViews.renderShell('#/admin/penilaian', 'Penilaian Essay', body);
-    },
-
-    bindEssayGradingList() {
-      document.querySelectorAll('[data-grade-filter]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          this.gradingFilterStatus = btn.dataset.gradeFilter;
-          Router.renderCurrent();
-        });
-      });
-    },
-
-    renderEssayGradingDetail(attemptId) {
-      const attempt = LmsStore.getAttemptById(attemptId);
-      if (!attempt) return this.renderEssayGradingList();
-
-      const snap = attempt.testSnapshot || {};
-      const chap = LmsStore.getChapterById(snap.chapterId);
-      const subj = chap ? LmsStore.getSubjectById(chap.subjectId) : null;
-      const essayQuestions = (attempt.questionSnapshots || []).filter((q) => q.type === 'essay');
-      const isGraded = attempt.grading?.status === 'graded';
-
-      const body = `
-        <div class="admin-page-head">
-          <div>
-            <div class="breadcrumb" style="margin-bottom:0.35rem;">
-              <a href="#/admin/penilaian">Penilaian Essay</a>
-              <span>/</span>
-              <span>Pemeriksaan Jawaban</span>
-            </div>
-            <h1>${Utils.escapeHtml(snap.title || 'Pemeriksaan Essay')}</h1>
-            <p class="form-hint">
-              ${CONFIG.PARTICIPANT_LABEL} (${Utils.escapeHtml(attempt.participantId)}) &bull;
-              ${Utils.escapeHtml(subj?.title || '')} &bull; ${Utils.escapeHtml(chap?.title || '')}
-            </p>
-          </div>
-          <a href="#/admin/penilaian" class="btn btn--outline btn--sm">${Utils.icon('arrow-left', 15)} Kembali ke Daftar</a>
-        </div>
-
-        <div class="stats-grid" style="margin-bottom:1.5rem;">
-          <div class="stat-card">
-            <div>
-              <div class="stat-card__label">Status Penilaian</div>
-              <div style="font-weight:700;color:var(--green-800);">${isGraded ? 'Selesai Dinilai' : 'Menunggu Penilaian'}</div>
-            </div>
-            <span class="badge ${isGraded ? 'badge--green' : 'badge--warm'}">${isGraded ? 'Final' : 'Pending'}</span>
-          </div>
-          <div class="stat-card">
-            <div>
-              <div class="stat-card__label">Skor Objektif (PG + B/S)</div>
-              <div class="stat-card__value" style="font-size:1.5rem;">${attempt.grading.objectivePoints} / ${attempt.grading.maxObjectivePoints}</div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div>
-              <div class="stat-card__label">Nilai Akhir</div>
-              <div class="stat-card__value" style="font-size:1.5rem;">
-                ${isGraded ? `${GradingService.formatScore(attempt.grading.finalScore)} / 100` : 'Belum Ditetapkan'}
-              </div>
-            </div>
-            ${isGraded ? `<span class="badge ${attempt.grading.passed ? 'badge--green' : 'badge--orange'}">${attempt.grading.passed ? 'Lulus' : 'Belum Lulus'}</span>` : ''}
-          </div>
-        </div>
-
-        <form id="essay-grading-form" class="form-stack">
-          ${essayQuestions.map((q, idx) => {
-            const existingGrade = attempt.grading?.essayGrades?.[q.id] || {};
-            const ansText = attempt.answers?.[q.id];
-            const valPts = typeof existingGrade.awardedPoints === 'number' ? existingGrade.awardedPoints : '';
-
-            return `
-              <section class="essay-grade-card">
-                <div style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;flex-wrap:wrap;">
-                  <strong style="color:var(--green-800);">Soal Essay #${idx + 1}</strong>
-                  <span class="badge badge--orange">Bobot Maksimal: ${q.points} Poin</span>
-                </div>
-
-                <div>
-                  <div class="form-label" style="margin-bottom:0.35rem;">Pertanyaan</div>
-                  <p style="font-weight:500;">${Utils.escapeHtml(q.question)}</p>
-                </div>
-
-                <div>
-                  <div class="form-label" style="margin-bottom:0.35rem;">Jawaban Peserta</div>
-                  <div class="essay-answer-box">${Utils.escapeHtml((typeof ansText === 'string' && ansText.trim()) ? ansText : 'Tidak dijawab oleh peserta.')}</div>
-                </div>
-
-                <div class="form-row-2">
-                  <div class="alert-box alert-box--info" style="flex-direction:column;gap:0.25rem;">
-                    <strong>Pedoman Jawaban</strong>
-                    <span>${Utils.escapeHtml(q.modelAnswer || '-')}</span>
-                  </div>
-                  <div class="alert-box alert-box--warn" style="flex-direction:column;gap:0.25rem;">
-                    <strong>Rubrik Penilaian</strong>
-                    <span>${Utils.escapeHtml(q.rubric || '-')}</span>
-                  </div>
-                </div>
-
-                <div class="form-row-2">
-                  <div class="form-field">
-                    <label class="form-label" for="grade-pts-${Utils.escapeHtml(q.id)}">Poin Diberikan (0 – ${q.points}) <span>*</span></label>
-                    <input
-                      id="grade-pts-${Utils.escapeHtml(q.id)}"
-                      class="input"
-                      type="number"
-                      min="0"
-                      max="${q.points}"
-                      step="0.5"
-                      required
-                      data-essay-pts="${Utils.escapeHtml(q.id)}"
-                      data-max-pts="${q.points}"
-                      value="${valPts}"
-                      placeholder="Masukkan nilai 0 s.d. ${q.points}"
-                    >
-                  </div>
-                  <div class="form-field">
-                    <label class="form-label" for="grade-fb-${Utils.escapeHtml(q.id)}">Komentar / Umpan Balik (Opsional)</label>
-                    <input
-                      id="grade-fb-${Utils.escapeHtml(q.id)}"
-                      class="input"
-                      type="text"
-                      data-essay-fb="${Utils.escapeHtml(q.id)}"
-                      value="${Utils.escapeHtml(existingGrade.feedback || '')}"
-                      placeholder="Catatan evaluasi untuk peserta..."
-                    >
-                  </div>
-                </div>
-              </section>
-            `;
-          }).join('')}
-
-          <div id="essay-grade-error" class="form-error" style="display:none;"></div>
-
-          <div style="display:flex;justify-content:flex-end;gap:0.75rem;flex-wrap:wrap;">
-            <a href="#/admin/penilaian" class="btn btn--outline">Batal</a>
-            <button type="submit" class="btn btn--primary">
-              ${Utils.icon('check-circle-2', 17)} Simpan Penilaian &amp; Hitung Nilai Akhir
-            </button>
-          </div>
-        </form>
-      `;
-
-      return AdminViews.renderShell('#/admin/penilaian', 'Pemeriksaan Essay', body);
-    },
-
-    bindEssayGradingDetail(attemptId) {
-      document.getElementById('essay-grading-form')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const errEl = document.getElementById('essay-grade-error');
-        const gradesMap = {};
-
-        try {
-          document.querySelectorAll('[data-essay-pts]').forEach((input) => {
-            const qId = input.dataset.essayPts;
-            const maxPts = Number(input.dataset.maxPts);
-            const rawVal = input.value.trim();
-
-            if (rawVal === '') {
-              throw new Error('Seluruh jawaban essay wajib diberi poin sebelum disimpan.');
-            }
-            const num = Number(rawVal);
-            if (!Number.isFinite(num) || num < 0 || num > maxPts) {
-              input.focus();
-              throw new Error(`Nilai poin harus berada di antara 0 dan ${maxPts}.`);
-            }
-
-            const fbInput = document.querySelector(`[data-essay-fb="${qId}"]`);
-            gradesMap[qId] = {
-              awardedPoints: num,
-              feedback: fbInput ? fbInput.value : ''
-            };
-          });
-
-          const updated = LmsStore.gradeAttemptEssays(attemptId, gradesMap);
-          errEl.style.display = 'none';
-          UI.Toast.show(
-            `Penilaian tersimpan! Nilai akhir: ${GradingService.formatScore(updated.grading.finalScore)} (${updated.grading.passed ? 'Lulus' : 'Belum Lulus'}).`,
-            'success'
-          );
-          Router.renderCurrent();
-        } catch (err) {
-          errEl.textContent = err.message;
-          errEl.style.display = 'block';
-          UI.Toast.show(err.message, 'error');
-        }
       });
     }
   };
@@ -3176,18 +2889,7 @@
     (match) => LmsAdminViews.bindChapterQuizBuilder(match[1])
   );
 
-  Router.registerDynamicRoute(
-    /^#\/admin\/penilaian$/,
-    () => LmsAdminViews.renderEssayGradingList(),
-    () => LmsAdminViews.bindEssayGradingList()
-  );
-
-  Router.registerDynamicRoute(
-    /^#\/admin\/penilaian\/([^/]+)$/,
-    (match) => LmsAdminViews.renderEssayGradingDetail(match[1]),
-    (match) => LmsAdminViews.bindEssayGradingDetail(match[1])
-  );
-
   PKNJ.GradingService = GradingService;
   PKNJ.LmsStore = LmsStore;
+  PKNJ.migrateStateV21 = () => LmsStore.migrateStateV21();
 })();

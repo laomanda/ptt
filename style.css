@@ -2165,7 +2165,7 @@ section[id] {
 }
 
 /* ==========================================================================
-   V2 — MINI LMS, QUIZ BUILDER, QUIZ RUNNER, HASIL & PENILAIAN ESSAY
+   V2.1 — MINI LMS, QUIZ BUILDER PILIHAN GANDA, QUIZ RUNNER & HASIL OTOMATIS
    ========================================================================== */
 
 /* LMS Subject & Chapter Layout */
@@ -2180,6 +2180,11 @@ section[id] {
   .lms-layout {
     grid-template-columns: 310px minmax(0, 1fr);
   }
+
+  .lms-sidebar {
+    position: sticky;
+    top: 96px;
+  }
 }
 
 .lms-sidebar {
@@ -2188,8 +2193,7 @@ section[id] {
   border-radius: var(--radius-lg);
   padding: 1.25rem;
   box-shadow: var(--shadow-card);
-  position: sticky;
-  top: 96px;
+  min-width: 0;
 }
 
 .lms-chapter-nav {
@@ -2233,6 +2237,8 @@ section[id] {
   border-radius: var(--radius-lg);
   padding: clamp(1.25rem, 3vw, 2rem);
   box-shadow: var(--shadow-card);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .lms-reading-body {
@@ -2336,52 +2342,20 @@ section[id] {
   color: var(--white);
 }
 
-.qtype-cards {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.9rem;
-}
-
-@media (min-width: 560px) {
-  .qtype-cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.qtype-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.55rem;
-  padding: 1.15rem;
-  border-radius: var(--radius-md);
-  border: 1.5px solid var(--border-light);
-  background: var(--white);
-  text-align: left;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.qtype-card:hover {
-  border-color: var(--green-500);
-  background: var(--green-50);
-  transform: translateY(-2px);
-}
-
-.qtype-card__icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 0.75rem;
-  display: grid;
-  place-items: center;
-}
-
 .qb-question-card {
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   background: var(--white);
   overflow: hidden;
   transition: border-color var(--transition-fast);
+}
+
+.qb-question-card--legacy {
+  border-color: var(--orange-300);
+}
+
+.qb-question-card--legacy .qb-question-card__head {
+  background: var(--orange-50);
 }
 
 .qb-question-card:hover {
@@ -2439,6 +2413,8 @@ section[id] {
   border-radius: var(--radius-lg);
   padding: clamp(1.25rem, 3vw, 1.85rem);
   box-shadow: var(--shadow-card);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .quiz-option-list {
@@ -2583,17 +2559,6 @@ section[id] {
   background: var(--white);
 }
 
-.essay-grade-card {
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 1.35rem;
-  background: var(--white);
-  box-shadow: var(--shadow-card);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .essay-answer-box {
   padding: 1rem;
   border-radius: var(--radius-md);
@@ -2602,17 +2567,6 @@ section[id] {
   white-space: pre-wrap;
   font-size: 0.92rem;
   color: var(--text-primary);
-}
-
-.sidebar-badge {
-  margin-left: auto;
-  padding: 0.15rem 0.5rem;
-  border-radius: var(--radius-pill);
-  background: var(--orange-500);
-  color: var(--white);
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1.2;
 }
 
 /* Reduced Motion */
