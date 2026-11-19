@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesantren Kader Nazhir Putri Jalaluddin — Prototype Website &amp; Dashboard</title>
+  <meta name="description" content="Pesantren Kader Nazhir Putri Jalaluddin memadukan pendidikan Al-Qur'an, khazanah keilmuan Islam, dan kepemimpinan nazhir untuk mempersiapkan generasi muslimah masa depan.">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
+
+  <!-- Root Aplikasi (Publik & Dashboard Admin) -->
+  <div id="app" class="app-root">
+    <div class="app-boot-loader" role="status" aria-live="polite">
+      <div class="boot-spinner" aria-hidden="true"></div>
+      <p>Memuat Pesantren Kader Nazhir Putri Jalaluddin...</p>
+    </div>
+  </div>
+
+  <!-- Portal Modal Umum (Preview Dokumen, Video Player, Form Admin, Kontak) -->
+  <div id="modal-root" class="modal-root" aria-hidden="true"></div>
+
+  <!-- Portal Dialog Konfirmasi -->
+  <div id="confirm-root" class="modal-root" aria-hidden="true"></div>
+
+  <!-- Portal Notifikasi Toast -->
+  <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Aplikasi Utama & Modul Mini LMS / Quiz Builder -->
+  <script src="./app.js"></script>
+  <script src="./lms.js"></script>
+</body>
+</html>

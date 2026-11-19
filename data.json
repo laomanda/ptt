@@ -1,0 +1,502 @@
+{
+  "meta": {
+    "institution": "Pesantren Kader Nazhir Putri Jalaluddin",
+    "version": "2.0.0",
+    "description": "Data demo konten publik, Mini LMS, Quiz Builder, dan penilaian (disiapkan untuk migrasi Laravel)"
+  },
+  "documents": [
+    {
+      "id": "doc-001",
+      "title": "Profil Pesantren Kader Nazhir Putri Jalaluddin",
+      "description": "Dokumen pengenalan visi, misi, dan program pendidikan terpadu pesantren putri serta kaderisasi nazhir wakaf.",
+      "category": "Profil",
+      "type": "pdf",
+      "fileId": null,
+      "fileName": null,
+      "fileSize": 0,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-01T08:00:00+07:00"
+    },
+    {
+      "id": "doc-002",
+      "title": "Silabus Tahfidz Al-Qur'an & Ilmu Turats",
+      "description": "Rancangan kurikulum pembinaan hafalan Al-Qur'an, adab thalibul ilmi, serta kajian kitab keislaman dasar hingga menengah.",
+      "category": "Kurikulum",
+      "type": "pdf",
+      "fileId": null,
+      "fileName": null,
+      "fileSize": 0,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-04T09:30:00+07:00"
+    },
+    {
+      "id": "doc-003",
+      "title": "Modul Pengantar Manajemen Wakaf Produktif",
+      "description": "Materi presentasi pembekalan dasar tata kelola aset wakaf, amanah kenazhiran, dan literasi kebermanfaatan umat.",
+      "category": "Kajian Wakaf",
+      "type": "pptx",
+      "fileId": null,
+      "fileName": null,
+      "fileSize": 0,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-08T10:15:00+07:00"
+    },
+    {
+      "id": "doc-004",
+      "title": "Panduan Kepemimpinan Muslimah & Organisasi Santriwati",
+      "description": "Bahan ajar pembinaan karakter kepemimpinan, komunikasi efektif, dan manajemen kegiatan kesantrian.",
+      "category": "Kepemimpinan",
+      "type": "ppt",
+      "fileId": null,
+      "fileName": null,
+      "fileSize": 0,
+      "demo": true,
+      "status": "draft",
+      "createdAt": "2026-11-12T14:00:00+07:00"
+    }
+  ],
+  "videos": [
+    {
+      "id": "vid-001",
+      "title": "Pengenalan Program Pendidikan & Kaderisasi Nazhir",
+      "description": "Gambaran umum pembinaan harian santriwati dalam memadukan tahfidz Al-Qur'an, ilmu keislaman, dan wawasan wakaf.",
+      "category": "Profil",
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-02T08:00:00+07:00"
+    },
+    {
+      "id": "vid-002",
+      "title": "Kajian Dasar Fiqih Wakaf dan Peran Nazhir Muslimah",
+      "description": "Rekaman materi pengantar tentang peran strategis nazhir dalam menjaga dan mengembangkan amanah wakaf.",
+      "category": "Kajian Wakaf",
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "demo": true,
+      "status": "draft",
+      "createdAt": "2026-11-10T11:20:00+07:00"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "subj-001",
+      "title": "Dasar-Dasar Kenazhiran & Fiqih Wakaf",
+      "code": "WKF-101",
+      "category": "Kajian Wakaf",
+      "description": "Mata pelajaran inti untuk memahami prinsip fiqih wakaf, amanah nazhir, serta pengelolaan aset wakaf produktif secara profesional.",
+      "instructor": "Ustadzah Pengampu (Contoh Demo)",
+      "demo": true,
+      "status": "published",
+      "order": 1,
+      "createdAt": "2026-11-01T08:00:00+07:00"
+    },
+    {
+      "id": "subj-002",
+      "title": "Adab Thalibul Ilmi & Kepemimpinan Muslimah",
+      "code": "KPM-102",
+      "category": "Kepemimpinan",
+      "description": "Pembinaan adab penuntut ilmu Al-Qur'an, kedisiplinan amanah, dan keterampilan memimpin kegiatan sosial keumatan.",
+      "instructor": "Ustadzah Pembina (Contoh Demo)",
+      "demo": true,
+      "status": "published",
+      "order": 2,
+      "createdAt": "2026-11-03T08:00:00+07:00"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "chap-001",
+      "subjectId": "subj-001",
+      "title": "Bab 1: Hakikat Wakaf dan Amanah Nazhir",
+      "summary": "Pengantar konsep wakaf dalam Islam, perbedaan wakaf dengan sedekah biasa, serta tugas utama nazhir.",
+      "content": "Wakaf merupakan penyerahan harta benda yang bersifat tahan lama untuk diambil manfaatnya bagi kemaslahatan umat secara berkelanjutan. Dalam tata kelola wakaf, seorang nazhir memikul amanah menjaga pokok aset (ashl) agar tidak berkurang nilainya sekaligus mengelola hasilnya agar tepat sasaran bagi mauquf alaih.\n\nPada bab ini santriwati mempelajari rukun wakaf (wakif, mauquf bih, mauquf alaih, dan shighat), prinsip kehati-hatian syariah, serta karakter amanah dan profesionalitas yang wajib dimiliki kader nazhir muslimah.",
+      "documentIds": ["doc-001", "doc-003"],
+      "videoIds": ["vid-001"],
+      "demo": true,
+      "order": 1,
+      "status": "published",
+      "createdAt": "2026-11-01T08:30:00+07:00"
+    },
+    {
+      "id": "chap-002",
+      "subjectId": "subj-001",
+      "title": "Bab 2: Wakaf Produktif & Pelaporan Amanah",
+      "summary": "Mengenal model pengembangan aset wakaf produktif dan akuntabilitas pelaporan nazhir.",
+      "content": "Wakaf produktif mendorong aset wakaf agar dikelola secara ekonomis dan berkesinambungan sehingga menghasilkan surplus manfaat untuk pendidikan, kesehatan, dan pemberdayaan masyarakat.\n\nKader nazhir dibekali pemahaman dasar perencanaan program, pemisahan antara pokok wakaf dengan hasil pengelolaan, serta transparansi pelaporan kepada wakif dan pemangku kepentingan.",
+      "documentIds": ["doc-003"],
+      "videoIds": [],
+      "demo": true,
+      "order": 2,
+      "status": "published",
+      "createdAt": "2026-11-05T09:00:00+07:00"
+    },
+    {
+      "id": "chap-003",
+      "subjectId": "subj-002",
+      "title": "Bab 1: Adab Penuntut Ilmu & Keteladanan Muslimah",
+      "summary": "Landasan akhlak penuntut ilmu Al-Qur'an dan peran keteladanan dalam memimpin.",
+      "content": "Keberkahan ilmu berawal dari kelurusan niat, penghormatan terhadap guru dan Al-Qur'an, serta kesungguhan dalam mengamalkan ilmu yang dipelajari.\n\nDalam kepemimpinan muslimah, keteladanan adab menjadi fondasi kepercayaan sebelum menjalankan peran organisasi dan pengabdian masyarakat.",
+      "documentIds": ["doc-002"],
+      "videoIds": [],
+      "demo": true,
+      "order": 1,
+      "status": "published",
+      "createdAt": "2026-11-06T09:00:00+07:00"
+    }
+  ],
+  "tests": [
+    {
+      "id": "test-001",
+      "chapterId": "chap-001",
+      "type": "pre_test",
+      "title": "Pre-Test Bab 1: Hakikat Wakaf & Amanah Nazhir",
+      "description": "Tes diagnostik awal untuk mengukur pemahaman sebelum mempelajari materi Bab 1. Tidak memblokir akses materi.",
+      "passingScore": 70,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-01T09:00:00+07:00"
+    },
+    {
+      "id": "test-002",
+      "chapterId": "chap-001",
+      "type": "post_test",
+      "title": "Post-Test Bab 1: Hakikat Wakaf & Amanah Nazhir",
+      "description": "Evaluasi akhir Bab 1 terdiri atas soal Pilihan Ganda, Benar/Salah, dan Essay uraian.",
+      "passingScore": 75,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-01T09:15:00+07:00"
+    },
+    {
+      "id": "test-003",
+      "chapterId": "chap-002",
+      "type": "pre_test",
+      "title": "Pre-Test Bab 2: Wakaf Produktif",
+      "description": "Tes pemetaan awal sebelum mempelajari pengelolaan wakaf produktif.",
+      "passingScore": 70,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-05T09:15:00+07:00"
+    },
+    {
+      "id": "test-004",
+      "chapterId": "chap-002",
+      "type": "post_test",
+      "title": "Post-Test Bab 2: Wakaf Produktif",
+      "description": "Evaluasi pemahaman model wakaf produktif dan akuntabilitas nazhir.",
+      "passingScore": 75,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-05T09:30:00+07:00"
+    },
+    {
+      "id": "test-005",
+      "chapterId": "chap-003",
+      "type": "pre_test",
+      "title": "Pre-Test Bab 1: Adab Penuntut Ilmu",
+      "description": "Evaluasi awal pemahaman adab thalibul ilmi dan kepemimpinan muslimah.",
+      "passingScore": 70,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-06T09:15:00+07:00"
+    },
+    {
+      "id": "test-006",
+      "chapterId": "chap-003",
+      "type": "post_test",
+      "title": "Post-Test Bab 1: Adab Penuntut Ilmu",
+      "description": "Evaluasi akhir materi Adab Penuntut Ilmu & Keteladanan Muslimah.",
+      "passingScore": 75,
+      "demo": true,
+      "status": "published",
+      "createdAt": "2026-11-06T09:30:00+07:00"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-001",
+      "testId": "test-001",
+      "type": "multiple_choice",
+      "question": "Apa prinsip utama harta yang diwakafkan dalam Islam? (Soal Contoh)",
+      "options": [
+        "Pokok harta dijaga kelestariannya dan manfaatnya disalurkan",
+        "Harta langsung dihabiskan seluruhnya dalam satu kali pembagian",
+        "Harta hanya boleh digunakan untuk kepentingan pribadi nazhir",
+        "Harta harus dijual kembali setelah satu bulan diterima"
+      ],
+      "correctAnswer": 0,
+      "points": 10,
+      "explanation": "Prinsip wakaf adalah menahan pokok harta (habsul ashl) dan menyalurkan manfaatnya (tasbilul manfa'ah) secara berkelanjutan.",
+      "order": 1
+    },
+    {
+      "id": "q-002",
+      "testId": "test-001",
+      "type": "true_false",
+      "question": "Wakaf hanya dapat dilakukan dalam bentuk tanah dan bangunan, tidak dapat berbentuk uang atau aset bergerak lainnya. (Soal Contoh)",
+      "correctAnswer": false,
+      "points": 5,
+      "explanation": "Pernyataan tersebut salah. Selain tanah dan bangunan, fikih dan regulasi wakaf modern juga mengenal wakaf uang dan aset bergerak produktif.",
+      "order": 2
+    },
+    {
+      "id": "q-003",
+      "testId": "test-001",
+      "type": "essay",
+      "question": "Jelaskan secara singkat apa peran penting seorang nazhir dalam menjaga amanah wakaf! (Soal Contoh)",
+      "modelAnswer": "Nazhir berperan menjaga keutuhan pokok aset wakaf, mengelola secara produktif sesuai syariah dan ikrar wakaf, serta menyalurkan hasil manfaat secara transparan kepada penerima manfaat (mauquf alaih).",
+      "rubric": "Menyebutkan minimal 2 peran: menjaga pokok aset (10 poin) dan mengelola/menyalurkan manfaat secara amanah (10 poin).",
+      "instructions": "Tuliskan jawaban dengan bahasa yang ringkas dan jelas (maksimal 5.000 karakter).",
+      "points": 20,
+      "order": 3
+    },
+    {
+      "id": "q-004",
+      "testId": "test-002",
+      "type": "multiple_choice",
+      "question": "Siapakah pihak yang menerima amanah untuk mengelola dan mengembangkan harta wakaf? (Soal Contoh)",
+      "options": [
+        "Wakif",
+        "Nazhir",
+        "Mauquf alaih",
+        "Saksi akad"
+      ],
+      "correctAnswer": 1,
+      "points": 10,
+      "explanation": "Nazhir adalah pihak pengelola harta benda wakaf sesuai peruntukan dalam ikrar wakaf.",
+      "order": 1
+    },
+    {
+      "id": "q-005",
+      "testId": "test-002",
+      "type": "multiple_choice",
+      "question": "Manakah yang termasuk unsur rukun wakaf dalam kajian fiqih? (Soal Contoh)",
+      "options": [
+        "Wakif, mauquf bih, mauquf alaih, dan shighat",
+        "Pembeli, penjual, akad jual beli, dan harga",
+        "Debitur, kreditur, bunga, dan jaminan",
+        "Pengawas proyek dan kontraktor bangunan"
+      ],
+      "correctAnswer": 0,
+      "points": 10,
+      "explanation": "Empat rukun wakaf mencakup wakif (pemberi wakaf), mauquf bih (harta wakaf), mauquf alaih (penerima manfaat), dan shighat (ikrar).",
+      "order": 2
+    },
+    {
+      "id": "q-006",
+      "testId": "test-002",
+      "type": "true_false",
+      "question": "Hasil pengelolaan wakaf boleh digunakan untuk kepentingan pribadi pengelola tanpa batas selama aset utamanya masih ada. (Soal Contoh)",
+      "correctAnswer": false,
+      "points": 10,
+      "explanation": "Hasil pengelolaan wakaf wajib disalurkan kepada mauquf alaih sesuai ketentuan syariah dan peraturan yang berlaku.",
+      "order": 3
+    },
+    {
+      "id": "q-007",
+      "testId": "test-002",
+      "type": "essay",
+      "question": "Uraikan perbedaan mendasar antara wakaf dengan sedekah biasa serta dampaknya bagi pemberdayaan umat! (Soal Contoh)",
+      "modelAnswer": "Sedekah biasa dapat langsung habis dikonsumsi penerima, sedangkan wakaf menahan pokok hartanya agar tetap ada dan hanya menyalurkan hasil atau manfaatnya secara berkelanjutan sehingga menciptakan dampak jangka panjang bagi pendidikan, dakwah, dan ekonomi umat.",
+      "rubric": "Ketepatan pembedaan pokok vs manfaat (10 poin), penjelasan keberlanjutan dampak umat (10 poin).",
+      "instructions": "Berikan contoh sederhana jika diperlukan.",
+      "points": 20,
+      "order": 4
+    },
+    {
+      "id": "q-008",
+      "testId": "test-003",
+      "type": "multiple_choice",
+      "question": "Apa tujuan utama dari pengelolaan wakaf secara produktif? (Soal Contoh)",
+      "options": [
+        "Menyimpan aset agar tidak pernah digunakan",
+        "Menghasilkan surplus manfaat yang berkelanjutan bagi mauquf alaih",
+        "Mengalihkan kepemilikan aset menjadi milik pribadi",
+        "Menghapus kewajiban pencatatan keuangan"
+      ],
+      "correctAnswer": 1,
+      "points": 10,
+      "explanation": "Wakaf produktif mengoptimalkan aset agar menghasilkan nilai tambah berkelanjutan.",
+      "order": 1
+    },
+    {
+      "id": "q-009",
+      "testId": "test-003",
+      "type": "true_false",
+      "question": "Transparansi pelaporan merupakan bagian dari akuntabilitas nazhir terhadap wakif dan masyarakat. (Soal Contoh)",
+      "correctAnswer": true,
+      "points": 10,
+      "explanation": "Benar, pelaporan yang jelas menjaga kepercayaan dan akuntabilitas amanah wakaf.",
+      "order": 2
+    },
+    {
+      "id": "q-010",
+      "testId": "test-004",
+      "type": "multiple_choice",
+      "question": "Dalam pelaporan wakaf produktif, apa yang harus dipisahkan secara jelas oleh nazhir? (Soal Contoh)",
+      "options": [
+        "Pokok aset wakaf dan hasil/surplus pengelolaannya",
+        "Nama santri dan jadwal piket harian",
+        "Warna sampul dokumen dan ukuran kertas",
+        "Catatan pribadi dengan jadwal libur"
+      ],
+      "correctAnswer": 0,
+      "points": 15,
+      "explanation": "Pemisahan pokok aset wakaf dan hasil pengelolaan penting agar nilai pokok wakaf tetap terjaga.",
+      "order": 1
+    },
+    {
+      "id": "q-011",
+      "testId": "test-004",
+      "type": "true_false",
+      "question": "Nazhir diperbolehkan mengurangi nilai pokok wakaf untuk menutup biaya operasional rutin tanpa perencanaan pemulihan. (Soal Contoh)",
+      "correctAnswer": false,
+      "points": 10,
+      "explanation": "Pokok wakaf wajib dijaga keutuhannya dan tidak boleh tergerus.",
+      "order": 2
+    },
+    {
+      "id": "q-012",
+      "testId": "test-005",
+      "type": "multiple_choice",
+      "question": "Apa langkah pertama yang ditekankan dalam adab menuntut ilmu? (Soal Contoh)",
+      "options": [
+        "Meluruskan niat ikhlas karena Allah Ta'ala",
+        "Membeli perlengkapan paling mahal",
+        "Berdebat dengan teman sebaya",
+        "Menunda mengulang pelajaran"
+      ],
+      "correctAnswer": 0,
+      "points": 10,
+      "explanation": "Keikhlasan niat adalah fondasi utama keberkahan ilmu.",
+      "order": 1
+    },
+    {
+      "id": "q-013",
+      "testId": "test-005",
+      "type": "true_false",
+      "question": "Menghormati guru dan menjaga kebersihan majelis ilmu merupakan bagian dari adab thalibul ilmi. (Soal Contoh)",
+      "correctAnswer": true,
+      "points": 5,
+      "explanation": "Benar, adab terhadap guru dan majelis ilmu mendahului penyampaian ilmu.",
+      "order": 2
+    },
+    {
+      "id": "q-014",
+      "testId": "test-005",
+      "type": "essay",
+      "question": "Bagaimana hubungan antara adab penuntut ilmu dengan kualitas kepemimpinan seorang muslimah? (Soal Contoh)",
+      "modelAnswer": "Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan sehingga kepemimpinan berjalan dengan amanah dan dihormati oleh lingkungan sekitar.",
+      "rubric": "Keterkaitan adab dengan amanah/keteladanan (10 poin) dan kejelasan penyampaian (10 poin).",
+      "instructions": "Jelaskan dalam 2–4 kalimat yang runtut.",
+      "points": 20,
+      "order": 3
+    },
+    {
+      "id": "q-015",
+      "testId": "test-006",
+      "type": "multiple_choice",
+      "question": "Nilai apakah yang menjadi dasar kepercayaan terhadap seorang pemimpin muslimah? (Soal Contoh)",
+      "options": [
+        "Keteladanan adab dan konsistensi menjaga amanah",
+        "Kemampuan berbicara keras tanpa mendengar",
+        "Sikap menutup diri dari masukan",
+        "Mengutamakan kepentingan pribadi"
+      ],
+      "correctAnswer": 0,
+      "points": 15,
+      "explanation": "Keteladanan dan amanah adalah fondasi kepemimpinan dalam Islam.",
+      "order": 1
+    },
+    {
+      "id": "q-016",
+      "testId": "test-006",
+      "type": "true_false",
+      "question": "Kepemimpinan yang baik selalu disertai kesediaan untuk bermusyawarah dan menerima nasihat. (Soal Contoh)",
+      "correctAnswer": true,
+      "points": 10,
+      "explanation": "Musyawarah (syura) merupakan prinsip utama kepemimpinan Islam.",
+      "order": 2
+    }
+  ],
+  "attempts": [
+    {
+      "id": "attempt-demo-001",
+      "testId": "test-005",
+      "participantId": "demo-participant-01",
+      "answers": {
+        "q-012": 0,
+        "q-013": true,
+        "q-014": "Adab membentuk sikap amanah, rendah hati, dan keteladanan bagi seorang muslimah sehingga kepemimpinannya membawa keberkahan serta dipercaya oleh jamaah."
+      },
+      "questionSnapshots": [
+        {
+          "id": "q-012",
+          "testId": "test-005",
+          "type": "multiple_choice",
+          "question": "Apa langkah pertama yang ditekankan dalam adab menuntut ilmu? (Soal Contoh)",
+          "options": [
+            "Meluruskan niat ikhlas karena Allah Ta'ala",
+            "Membeli perlengkapan paling mahal",
+            "Berdebat dengan teman sebaya",
+            "Menunda mengulang pelajaran"
+          ],
+          "correctAnswer": 0,
+          "points": 10,
+          "explanation": "Keikhlasan niat adalah fondasi utama keberkahan ilmu.",
+          "order": 1
+        },
+        {
+          "id": "q-013",
+          "testId": "test-005",
+          "type": "true_false",
+          "question": "Menghormati guru dan menjaga kebersihan majelis ilmu merupakan bagian dari adab thalibul ilmi. (Soal Contoh)",
+          "correctAnswer": true,
+          "points": 5,
+          "explanation": "Benar, adab terhadap guru dan majelis ilmu mendahului penyampaian ilmu.",
+          "order": 2
+        },
+        {
+          "id": "q-014",
+          "testId": "test-005",
+          "type": "essay",
+          "question": "Bagaimana hubungan antara adab penuntut ilmu dengan kualitas kepemimpinan seorang muslimah? (Soal Contoh)",
+          "modelAnswer": "Adab membentuk kerendahan hati, tanggung jawab, kejujuran, dan keteladanan sehingga kepemimpinan berjalan dengan amanah dan dihormati oleh lingkungan sekitar.",
+          "rubric": "Keterkaitan adab dengan amanah/keteladanan (10 poin) dan kejelasan penyampaian (10 poin).",
+          "instructions": "Jelaskan dalam 2–4 kalimat yang runtut.",
+          "points": 20,
+          "order": 3
+        }
+      ],
+      "testSnapshot": {
+        "id": "test-005",
+        "chapterId": "chap-003",
+        "type": "pre_test",
+        "title": "Pre-Test Bab 1: Adab Penuntut Ilmu",
+        "passingScore": 70
+      },
+      "grading": {
+        "objectivePoints": 15,
+        "maxObjectivePoints": 15,
+        "maxEssayPoints": 20,
+        "totalMaxPoints": 35,
+        "essayGrades": {},
+        "manualPoints": null,
+        "finalPoints": null,
+        "finalScore": null,
+        "passed": null,
+        "status": "pending_review"
+      },
+      "submittedAt": "2026-11-18T10:00:00+07:00"
+    }
+  ],
+  "inProgress": {},
+  "learningProgress": {
+    "completedChapterIds": []
+  }
+}
